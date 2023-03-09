@@ -3,8 +3,8 @@ function bubble_sort(arr, n) {
         throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
     }
 
-    for (let i = 0; i < n-1; i++) {
-        console.log(`Iteration ${i+1}`)
+    for (let i = 1; i <= n; i++) {
+        console.log(`Iteration ${i}`)
         for (let j = 0; j < n-1; j++) {
             if (arr[j] > arr[j+1]) {
                 [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
@@ -27,11 +27,9 @@ function merge_sort(arr, n=null) {
     }
 
     let a = arr.slice(0, Math.floor(n/2))
-    console.log('Split Array:', a)
-
     let b = arr.slice(Math.floor(n/2))
-    console.log('Split Array:', b)
 
+    console.log('Split Array:', a, b)
     return merge(merge_sort(a), merge_sort(b))
 }
 
@@ -51,11 +49,11 @@ function merge(a, b) {
 
 var arr = [5, 2, 3, 9, 1, 12]
 console.log('[Bubble Sort]:', arr)
-console.log(`Sorted Array: ${bubble_sort(arr, 6)}\n`)
+console.log('Sorted Array:', bubble_sort(arr, 6), '\n')
 
 var arr = [5, 2, 3, 9, 1, 12]
 console.log('[Merge Sort]:', arr)
-console.log(`Sorted Array: ${merge_sort(arr, 6)}\n`)
+console.log('Sorted Array:', merge_sort(arr, 6))
 
 module.exports = {
     bubble: bubble_sort, 

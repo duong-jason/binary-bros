@@ -1,6 +1,6 @@
 const { bubble, merge } = require('../sort.js') 
 
-sort_functions = [bubble, merge]
+sort_modules = [bubble, merge]
 
 function runner(sort) {
     describe(`${sort.name}`,  () => {
@@ -19,22 +19,19 @@ function runner(sort) {
         })
 
         test("Even-length input", () => {
-            const output = [0, 1, 2, 3, 4, 5]
-            expect(sort([5, 4, 3, 2, 1, 0], 6)).toEqual(output)
+            expect(sort([5, 4, 3, 2, 1, 0], 6)).toEqual([0, 1, 2, 3, 4, 5])
         })
 
         test("Odd-length input", () => {
-            const output = [1, 2, 3, 4, 5]
-            expect(sort([1, 2, 3, 4, 5], 5)).toEqual(output)
+            expect(sort([1, 2, 3, 4, 5], 5)).toEqual([1, 2, 3, 4, 5])
         })
 
         test("Negative values input", () => {
-            const output = [-5, -4, -3, -2, -1]
-            expect(sort([-1, -2, -3, -4, -5], 5)).toEqual(output)
+            expect(sort([-1, -2, -3, -4, -5], 5)).toEqual([-5, -4, -3, -2, -1])
         })
     })
 }
 
 describe('Sorting Algorithms', () => {
-    sort_functions.forEach(runner)
+    sort_modules.forEach(runner)
 })
