@@ -1,28 +1,34 @@
-function bubble_sort(arr, n) {
-    if (arr.length !== n) {
+function bubble_sort(input, n) {
+    var arr = []
+    for (let i = 0; i < input.length; i++) {
+        arr.push(input[i])
+    }
+
+    if (arr.length != n) {
         throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
     }
 
-    for (let i = 1; i <= n; i++) {
-        console.log(`Iteration ${i}`)
+    for (let i = 1; i < n; i++) {
+        document.write(`Iteration ${i}` + '<br>')
         for (let j = 0; j < n-1; j++) {
             if (arr[j] > arr[j+1]) {
                 [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
             }
-            console.log(arr)
+            document.write(arr + '<br>')
         }
     }
-    return arr
+    document.write('Sorted Array: ' + arr + '<br>')
 }
 
 function merge_sort(arr, n=null) {
     if (n === null) {
         n = arr.length
-    } else if (arr.length !== n) {
+    } else if (arr.length != n) {
         throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
     }
 
-    if (n <= 1) { // either one element from split or input arr with less than 1 element
+    // either one element from split or input array with less than 1 element
+    if (n <= 1) {
         return arr
     }
 
@@ -38,22 +44,14 @@ function merge(a, b) {
     let c = [], left = 0, right = 0
 
     while (left < n && right < m) {
-        c.push((a[left] <= b[right]) ? a[left++] : b[right++])
+        c.push((a[left] < b[right]) ? a[left++] : b[right++])
     }
 
     console.log(`Merged Subarray:`, [...c, ...a.slice(left, n), ...b.slice(right, m)])
 
-    // either array a or b must be empty and the other with at least one element
+    // either sorted array `a` or `b` must be empty and the other with at least one element
     return [...c, ...a.slice(left, n), ...b.slice(right, m)]
 }
-
-var arr = [5, 2, 3, 9, 1, 12]
-console.log('[Bubble Sort]:', arr)
-console.log('Sorted Array:', bubble_sort(arr, 6), '\n')
-
-var arr = [5, 2, 3, 9, 1, 12]
-console.log('[Merge Sort]:', arr)
-console.log('Sorted Array:', merge_sort(arr, 6))
 
 module.exports = {
     bubble: bubble_sort, 

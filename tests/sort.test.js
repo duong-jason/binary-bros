@@ -1,13 +1,13 @@
-const { bubble, merge } = require('../sort.js') 
+const { bubble, merge } = require('../algs/sort.js') 
 
-sort_modules = [bubble, merge]
+const sort_modules = [bubble, merge]
 
 function runner(sort) {
-    describe(`${sort.name}`,  () => {
-        test("Invalid input for array length", () => {
+    describe(sort.name, () => {
+        test("Invalid value for array length", () => {
             expect(() => {
-                sort([], 1)
-            }).toThrow('Expected n=0, Got n=1')
+                sort([], -1)
+            }).toThrow('Expected n=0, Got n=-1')
         })
 
         test("Empty array input", () => {
@@ -32,6 +32,4 @@ function runner(sort) {
     })
 }
 
-describe('Sorting Algorithms', () => {
-    sort_modules.forEach(runner)
-})
+sort_modules.forEach(runner)
