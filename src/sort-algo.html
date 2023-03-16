@@ -8,6 +8,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Alata&family=Alatsi&family=Inter:wght@300&display=swap" rel="stylesheet">
+	<script type="text/javascript" src="js/sort.js"></script>
 </head>
 <body>
 	<section class="header">
@@ -27,8 +28,13 @@
 		</div>
 		
 		<!-- Code to get user input -->
-
+		<div class="bs-input">
+			Size: <input type="number" name="size" id="size">
+			Elements: <input type="number" name="elements" id="elements">
+			<button onclick="bubble_sort()">Run</button>
+		</div>
 		<!-- Code to display each Iteration -->
+		<p id="bs-output"></p>
 		
 		<div class="back">
 			<a href="index.html" class="back-btn">BACK</a>

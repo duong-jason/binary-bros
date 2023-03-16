@@ -273,3 +273,56 @@ hr{
 
 	color: #FFFFFF;
 }
+
+.bs-input{
+	position: absolute;
+	width: 600px;
+	height: 500px;
+	left: calc(50% - 625px);
+	top: calc(0% + 280px);
+
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+
+	color: #D9D9D9;
+}
+input[type="number"][name="size"] {
+	width: 60px;
+	height: 30px;
+	font-family: 'Inter';
+	font-size: 18px;
+}
+input[type="number"][name="elements"] {
+	width: 290px;
+	height: 30px;
+	font-family: 'Inter';
+	font-size: 18px;
+}
+button{
+	width: 50px;
+	height: 30px;
+	font-family: 'Inter';
+	font-size: 18px;
+}
+#bs-output{
+	position: absolute;
+	width: 560px;
+	height: 400px;
+	left: calc(50% - 625px + 20px);
+	top: calc(0% + 330px);
+
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+	overflow: auto;
+
+	background: rgba(255, 255, 255, 1);
+	color: rgba(0, 0, 0, 1);
+}

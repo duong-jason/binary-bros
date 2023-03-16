@@ -1,24 +1,31 @@
-function bubble_sort(input, n) {
+function bubble_sort() {
+    const input = document.getElementById('elements').value;
+    const n = document.getElementById('size').value;
+
     var arr = []
+    let output = '';
     for (let i = 0; i < input.length; i++) {
         arr.push(input[i])
     }
 
     if (arr.length != n) {
-        throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
+        output += 'Invalid size or elements.' + '<br>' + 'Try again...' + '<br>';
+        //throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
+    }
+    else {
+        for (let i = 1; i < n; i++) {
+            output += `Iteration ${i}` + '<br>';
+            for (let j = 0; j < n-1; j++) {
+                if (arr[j] > arr[j+1]) {
+                    [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
+                }
+                output += arr + '<br>';
+            }
+        }
+        output += 'Sorted Array: ' + arr + '<br>';
     }
 
-    for (let i = 1; i < n; i++) {
-        document.write(`Iteration ${i}` + '<br>')
-        for (let j = 0; j < n-1; j++) {
-            if (arr[j] > arr[j+1]) {
-                [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
-            }
-            document.write(arr + '<br>')
-        }
-    }
-    document.write('Sorted Array: ' + arr + '<br>')
-    return arr
+    document.getElementById('bs-output').innerHTML = output;
 }
 
 function merge_sort(arr, n=null) {
