@@ -8,5 +8,6 @@ node sort.js
 ```
 ## Tests
 ```bash
+npm install jest
 npm run test
 ```
