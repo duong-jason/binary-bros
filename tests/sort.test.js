@@ -1,4 +1,4 @@
-const { bubble, merge } = require('../algs/sort.js') 
+const { bubble, merge } = require('../src/js/sort.js') 
 
 const sort_modules = [bubble, merge]
 

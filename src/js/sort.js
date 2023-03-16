@@ -18,6 +18,7 @@ function bubble_sort(input, n) {
         }
     }
     document.write('Sorted Array: ' + arr + '<br>')
+    return arr
 }
 
 function merge_sort(arr, n=null) {
