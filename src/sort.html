@@ -2,12 +2,27 @@
 <html>
   <head>
     <title>Bubble Sort</title>
-    <script type="text/javascript" src="../algs/sort.js"></script>
+    <script src="js/sort.js"></script>
+    <script>
+      function synthesize(elements) {
+        const pattern = /^\d+(,\s\d+)*$/
+        try {
+          if (!pattern.test(elements)) {
+            throw 'Please enter comma-separated numerical values\n \
+                  Example: 1, 23, 456'
+          }
+          return elements.split(', ').map(Number)
+        } catch (err) {
+          document.getElementById('output').innerHTML = err
+        }
+      }
+    </script>
   </head>
   <body>
-    <h1> Bubble Sort </h2>
+    <h1>Bubble Sort</h2>
     Size: <input type="number" name="size" id="size">
-    Elements: <input type="number" name="elements" id="elements"><br>
-    <button onclick="bubble_sort(document.getElementById('elements').value, document.getElementById('size').value)">Run</button>
+    Elements: <input name="elements" id="elements"><br>
+    <button onclick="bubble_sort(synthesize(document.getElementById('elements').value), document.getElementById('size').value)">Run</button>
+    <p id="output"></p>
   </body>
 </html>

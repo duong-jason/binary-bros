@@ -1,29 +1,29 @@
-function bubble_sort(input, n) {
-    var arr = []
-    for (let i = 0; i < input.length; i++) {
-        arr.push(input[i])
+function bubble_sort(arr, n) {
+    console.log(arr)
+    if (n != arr.length) {
+        // throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
+        document.getElementById('output').innerHTML = `Expected n=${arr.length}, Got n=${n}`
+        return
     }
 
-    if (arr.length != n) {
-        throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
-    }
+    var output = ''
 
-    for (let i = 1; i < n; i++) {
-        document.write(`Iteration ${i}` + '<br>')
-        for (let j = 0; j < n-1; j++) {
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n-i-1; j++) {
             if (arr[j] > arr[j+1]) {
                 [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
             }
-            document.write(arr + '<br>')
+            output += `${i+1}) ${arr}<br>`
         }
     }
-    document.write('Sorted Array: ' + arr + '<br>')
+    output += `Sorted Array ${arr}`
+    document.getElementById('output').innerHTML = output
 }
 
 function merge_sort(arr, n=null) {
     if (n === null) {
         n = arr.length
-    } else if (arr.length != n) {
+    } else if (n != arr.length) {
         throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
     }
 
