@@ -1,4 +1,4 @@
-const { bubble, merge } = require('../src/js/sort.js') 
+const { bubble, merge } = require('../js/sort.js') 
 
 const sort_modules = [bubble, merge]
 
@@ -6,8 +6,8 @@ function runner(sort) {
     describe(sort.name, () => {
         test("Invalid value for array length", () => {
             expect(() => {
-                sort([], -1)
-            }).toThrow('Expected n=0, Got n=-1')
+                sort([], 1)
+            }).toThrow('Expected size=1, Got size=0')
         })
 
         test("Empty array input", () => {

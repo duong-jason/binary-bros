@@ -2,7 +2,7 @@ function bubble_sort(arr, n) {
     console.log(arr)
     if (n != arr.length) {
         // throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
-        document.getElementById('output').innerHTML = `Expected n=${arr.length}, Got n=${n}`
+        document.getElementById('output').innerHTML = `Expected size=${n}, Got size=${arr.length}`
         return
     }
 
@@ -15,6 +15,7 @@ function bubble_sort(arr, n) {
             }
             output += `${i+1}) ${arr}<br>`
         }
+        output += '<br>'
     }
     output += `Sorted Array ${arr}`
     document.getElementById('output').innerHTML = output
@@ -24,7 +25,7 @@ function merge_sort(arr, n=null) {
     if (n === null) {
         n = arr.length
     } else if (n != arr.length) {
-        throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
+        throw new RangeError(`Expected size=${n}, Got size=${arr.length}`)
     }
 
     // either one element from split or input array with less than 1 element
