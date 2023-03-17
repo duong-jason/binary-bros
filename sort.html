@@ -5,11 +5,10 @@
     <script src="js/sort.js"></script>
     <script>
       function synthesize(elements) {
-        const pattern = /^\d+(,\s\d+)*$/
+        const pattern = /^-?\d+(,\s-?\d+)*$/
         try {
           if (!pattern.test(elements)) {
-            throw 'Please enter comma-separated numerical values\n \
-                  Example: 1, 23, 456'
+            throw 'Please enter comma-separated numerical values\nExample: 1, 23, 456'
           }
           return elements.split(', ').map(Number)
         } catch (err) {
@@ -22,7 +21,7 @@
     <h1>Bubble Sort</h2>
     Size: <input type="number" name="size" id="size">
     Elements: <input name="elements" id="elements"><br>
-    <div id="output"></div>
     <button onclick="bubble_sort(synthesize(document.getElementById('elements').value), document.getElementById('size').value)">Run</button>
+    <div id="output"></div>
   </body>
 </html>
