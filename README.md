@@ -8,6 +8,6 @@ node sort.js
 ```
 ## Tests
 ```bash
-npm install jest
+npm install jest jest-environment-jsdom
 npm run test
 ```

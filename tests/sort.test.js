@@ -1,5 +1,4 @@
 const { bubble, merge } = require('../js/sort.js') 
-
 const sort_modules = [bubble, merge]
 
 function runner(sort) {

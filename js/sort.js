@@ -1,24 +1,41 @@
-function bubble_sort(arr, n) {
-    console.log(arr)
-    if (n != arr.length) {
-        // throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
-        document.getElementById('output').innerHTML = `Expected size=${n}, Got size=${arr.length}`
-        return
-    }
-
+function prettify(arr, start, color) {
     var output = ''
+    for (let i = 0; i < start; i++) {
+        output += ' ' + arr[i]
+    }
+    output += `<span style='color: ${color};'> ${arr[start]} ${arr[start+1]}</span>`
+    for (let i = start+2; i < arr.length; i++) {
+        output += ' ' + arr[i]
+    }
+    return output
+}
+
+function bubble_sort(arr, n) {
+    var output = ''
+
+    if (n != arr.length) {
+        message = `Expected size=${n}, Got size=${arr.length}`
+        /* istanbul ignore next */
+        if (document.getElementById('output')) {
+            document.getElementById('output').innerHTML = message
+        }
+        throw new RangeError(message)
+    }
 
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n-i-1; j++) {
+            output += `${i+1})` + (arr[j] > arr[j+1] ? prettify(arr, j, 'red') : prettify(arr, j, 'green')) + '<br>'
             if (arr[j] > arr[j+1]) {
                 [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
             }
-            output += `${i+1}) ${arr}<br>`
         }
         output += '<br>'
     }
-    output += `Sorted Array ${arr}`
-    document.getElementById('output').innerHTML = output
+    /* istanbul ignore next */
+    if (document.getElementById('output')) {
+        document.getElementById('output').innerHTML = output + `Sorted Array ${arr}`
+    }
+    return arr
 }
 
 function merge_sort(arr, n=null) {
