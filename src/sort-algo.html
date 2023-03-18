@@ -21,20 +21,35 @@
 		<div id="rectangle5"></div>
 		<div id="rectangle6"></div>
 		<div class="subtitle5">
-			<h1>Bubble Sort</h1>
+			<h4>Bubble Sort</h4>
 		</div>
 		<div class="subtitle6">
-			<h1>Merge Sort</h1>
+			<h4>Merge Sort</h4>
+		</div>
+		<div class="complexity-text5">
+			<h5>Complexity:  O(n^2)</h5>
+		</div>
+		<div class="complexity-text6">
+			<h5>Complexity: ???</h5>
 		</div>
 		
-		<!-- Code to get user input -->
+		<!-- Code to get user input for Bubble Sort-->
 		<div class="bs-input">
-			Size: <input type="number" name="size" id="size">
-			Elements: <input type="number" name="elements" id="elements">
-			<button onclick="bubble_sort()">Run</button>
+			Size: <input type="number" name="size1" id="size1">
+			Elements: <input name="elements1" id="elements1"><br>
+			<button onclick="document.getElementById('bs-output').innerHTML=''; bubble_sort(synthesize1(document.getElementById('elements1').value), document.getElementById('size1').value)" class="run-btn1">Run BS</button>
 		</div>
-		<!-- Code to display each Iteration -->
+		<!-- Code to display each Iteration for Bubble Sort-->
 		<p id="bs-output"></p>
+
+		<!-- Code to get user input for Merge Sort-->
+		<div class="ms-input">
+			Size: <input type="number" name="size2" id="size2">
+			Elements: <input name="elements2" id="elements2"><br>
+			<button onclick="document.getElementById('ms-output').innerHTML=''; merge_sort(synthesize2(document.getElementById('elements2').value), document.getElementById('size2').value)" class="run-btn2">Run MS</button>
+		</div>
+		<!-- Code to display each Iteration for Merge Sort-->
+		<p id="ms-output"></p>
 		
 		<div class="back">
 			<a href="index.html" class="back-btn">BACK</a>
@@ -44,15 +59,37 @@
 	<section class="footer">
 		<div id="rectangle4"></div>
 		<div class="footer-text1">
-			<h1>By: Maria Fernandez | Brian Fedelin | Jason Duong | Dylan Gunter | Josue Liu</h1>
+			<h3>By: Maria Fernandez | Brian Fedelin | Jason Duong | Dylan Gunter | Josue Liu</h3>
 		</div>
 		<div class="footer-text2">
-			<h1>CPSC 362 Spring 2023</h1>
+			<h3>CPSC 362 Spring 2023</h3>
 		</div>		
 	</section>
 	
 	<script>
-		<!--Space for JavaScript-->
+		<!--Space for JavaScript or script-->
+		function synthesize1(elements) {
+			const pattern = /^-?\d+(,\s-?\d+)*$/
+			try {
+				if (!pattern.test(elements)) {
+					throw 'Please enter comma-separated numerical values\nExample: 1, 23, 456'
+				}
+				return elements.split(', ').map(Number)
+			} catch (err) {
+				document.getElementById('bs-output').innerHTML = err
+			}
+		}
+		function synthesize2(elements) {
+			const pattern = /^-?\d+(,\s-?\d+)*$/
+			try {
+				if (!pattern.test(elements)) {
+					throw 'Please enter comma-separated numerical values\nExample: 1, 23, 456'
+				}
+				return elements.split(', ').map(Number)
+			} catch (err) {
+				document.getElementById('ms-output').innerHTML = err
+			}
+		}
 	</script>
 </body>
 </html>
