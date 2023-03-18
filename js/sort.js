@@ -19,14 +19,14 @@ function bubble_sort(arr, n) {
         throw new RangeError(message)
     }
 
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < n-1; i++) {
         for (let j = 0; j < n-i-1; j++) {
             output += `${i+1})` + prettify(arr, j, (arr[j] > arr[j+1]) ? 'red' : 'green') + '<br>'
             if (arr[j] > arr[j+1]) {
                 [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
             }
         }
-        output += '<br>'
+        output += `Result: ${arr}<br>`
     }
     /* istanbul ignore next */
     if (document.getElementById('output')) {

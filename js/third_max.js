@@ -23,11 +23,15 @@ function find_third_max(arr, n) {
         } else if (arr[i] >= t_max) {
             t_max = arr[i]
         }
+        /* istanbul ignore next */
+        if (document.getElementById('output')) {
+            document.getElementById('output').innerHTML += `${i+1}) First Max: ${f_max}, Second Max: ${s_max}, Third Max: ${t_max}<br>`
+        }
     }
 
     /* istanbul ignore next */
     if (document.getElementById('output')) {
-        document.getElementById('output').innerHTML = `Third Max Element: ${t_max}`
+        document.getElementById('output').innerHTML += `Third Max Element: ${t_max}`
     }
 
     return t_max
