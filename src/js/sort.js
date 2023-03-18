@@ -1,64 +1,100 @@
-function bubble_sort() {
-    const input = document.getElementById('elements').value;
-    const n = document.getElementById('size').value;
+function prettify(arr, start, color) {
+    var output = ''
+    for (let i = 0; i < start; i++) {
+        output += ' ' + arr[i]
+    }
+    output += `<span style='color: ${color};'> ${arr[start]} ${arr[start+1]}</span>`
+    for (let i = start+2; i < arr.length; i++) {
+        output += ' ' + arr[i]
+    }
+    return output
+}
 
-    var arr = []
-    let output = '';
-    for (let i = 0; i < input.length; i++) {
-        arr.push(input[i])
+function bubble_sort(arr, n) {
+    var output = ''
+
+    if (n != arr.length) {
+        message = `Expected size=${n}, Got size=${arr.length}`
+        /* istanbul ignore next */
+        if (document.getElementById('bs-output')) {
+            document.getElementById('bs-output').innerHTML = message
+        }
+        throw new RangeError(message)
     }
 
-    if (arr.length != n) {
-        output += 'Invalid size or elements.' + '<br>' + 'Try again...' + '<br>';
-        //throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
-    }
-    else {
-        for (let i = 1; i < n; i++) {
-            output += `Iteration ${i}` + '<br>';
-            for (let j = 0; j < n-1; j++) {
-                if (arr[j] > arr[j+1]) {
-                    [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
-                }
-                output += arr + '<br>';
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n-i-1; j++) {
+            output += `${i+1})` + prettify(arr, j, (arr[j] > arr[j+1]) ? 'red' : 'green') + '<br>'
+            if (arr[j] > arr[j+1]) {
+                [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
             }
         }
-        output += 'Sorted Array: ' + arr + '<br>';
+        output += '<br>'
     }
-
-    document.getElementById('bs-output').innerHTML = output;
+    /* istanbul ignore next */
+    if (document.getElementById('bs-output')) {
+        document.getElementById('bs-output').innerHTML = output + `Sorted Array ${arr}`
+    }
+    return arr
 }
 
 function merge_sort(arr, n=null) {
     if (n === null) {
         n = arr.length
-    } else if (arr.length != n) {
-        throw new RangeError(`Expected n=${arr.length}, Got n=${n}`)
+    } else if (n != arr.length) {
+        message = `Expected size=${n}, Got size=${arr.length}`
+        if (document.getElementById('ms-output')) {
+            document.getElementById('ms-output').innerHTML = message
+        }
+        throw new RangeError(message)
     }
 
-    // either one element from split or input array with less than 1 element
+    /* either one element from split or input array with less than 1 element */
+    /* TODO: does not print out for single elements */
     if (n <= 1) {
         return arr
     }
 
-    let a = arr.slice(0, Math.floor(n/2))
-    let b = arr.slice(Math.floor(n/2))
+    let left = arr.slice(0, Math.floor(n/2))
+    let right = arr.slice(Math.floor(n/2))
 
-    console.log('Split Array:', a, b)
-    return merge(merge_sort(a), merge_sort(b))
+    /* istanbul ignore next */
+    if (document.getElementById('ms-output')) {
+        document.getElementById('ms-output').innerHTML += 'Split Array:'
+        for (let i = 0; i < left.length; i++) {
+            document.getElementById('ms-output').innerHTML += ' ' + left[i]
+        }
+        document.getElementById('ms-output').innerHTML += '&nbsp'.repeat(2)
+        for (let i = 0; i < right.length; i++) {
+            document.getElementById('ms-output').innerHTML += ' ' + right[i]
+        }
+        document.getElementById('ms-output').innerHTML += '<br>'
+    }
+
+    return merge(merge_sort(left), merge_sort(right))
 }
 
 function merge(a, b) {
     const n = a.length, m = b.length
-    let c = [], left = 0, right = 0
+    let c = [], p = 0, q = 0
 
-    while (left < n && right < m) {
-        c.push((a[left] < b[right]) ? a[left++] : b[right++])
+    while (p < n && q < m) {
+        c.push((a[p] < b[q]) ? a[p++] : b[q++])
     }
 
-    console.log(`Merged Subarray:`, [...c, ...a.slice(left, n), ...b.slice(right, m)])
+    /* either sorted array `a` or `b` must be empty and the other with at least one element */
+    sorted_subarray = [...c, ...a.slice(p, n), ...b.slice(q, m)]
 
-    // either sorted array `a` or `b` must be empty and the other with at least one element
-    return [...c, ...a.slice(left, n), ...b.slice(right, m)]
+    /* istanbul ignore next */
+    if (document.getElementById('ms-output')) {
+        document.getElementById('ms-output').innerHTML += 'Merged Subarray:'
+        for (let i = 0; i < sorted_subarray.length; i++) {
+            document.getElementById('ms-output').innerHTML += ' ' + sorted_subarray[i]
+        }
+        document.getElementById('ms-output').innerHTML += '<br>'
+    }
+
+    return sorted_subarray
 }
 
 module.exports = {
