@@ -15,10 +15,7 @@ function bubble_sort(arr, n) {
 
     if (n != arr.length) {
         message = `Expected size=${n}, Got size=${arr.length}`
-        /* istanbul ignore next */
-        if (document.getElementById('output')) {
-            document.getElementById('output').innerHTML = message
-        }
+        alert(message)
         throw new RangeError(message)
     }
 
@@ -42,33 +39,57 @@ function merge_sort(arr, n=null) {
     if (n === null) {
         n = arr.length
     } else if (n != arr.length) {
-        throw new RangeError(`Expected size=${n}, Got size=${arr.length}`)
+        message = `Expected size=${n}, Got size=${arr.length}`
+        alert(message)
+        throw new RangeError(message)
     }
 
-    // either one element from split or input array with less than 1 element
+    /* either one element from split or input array with less than 1 element */
+    /* TODO: does not print out for single elements */
     if (n <= 1) {
         return arr
     }
 
-    let a = arr.slice(0, Math.floor(n/2))
-    let b = arr.slice(Math.floor(n/2))
+    let left = arr.slice(0, Math.floor(n/2))
+    let right = arr.slice(Math.floor(n/2))
 
-    console.log('Split Array:', a, b)
-    return merge(merge_sort(a), merge_sort(b))
+    /* istanbul ignore next */
+    if (document.getElementById('output')) {
+        document.getElementById('output').innerHTML += 'Split Array:'
+        for (let i = 0; i < left.length; i++) {
+            document.getElementById('output').innerHTML += ' ' + left[i]
+        }
+        document.getElementById('output').innerHTML += '&nbsp'.repeat(2)
+        for (let i = 0; i < right.length; i++) {
+            document.getElementById('output').innerHTML += ' ' + right[i]
+        }
+        document.getElementById('output').innerHTML += '<br>'
+    }
+
+    return merge(merge_sort(left), merge_sort(right))
 }
 
 function merge(a, b) {
     const n = a.length, m = b.length
-    let c = [], left = 0, right = 0
+    let c = [], p = 0, q = 0
 
-    while (left < n && right < m) {
-        c.push((a[left] < b[right]) ? a[left++] : b[right++])
+    while (p < n && q < m) {
+        c.push((a[p] < b[q]) ? a[p++] : b[q++])
     }
 
-    console.log(`Merged Subarray:`, [...c, ...a.slice(left, n), ...b.slice(right, m)])
+    /* either sorted array `a` or `b` must be empty and the other with at least one element */
+    sorted_subarray = [...c, ...a.slice(p, n), ...b.slice(q, m)]
 
-    // either sorted array `a` or `b` must be empty and the other with at least one element
-    return [...c, ...a.slice(left, n), ...b.slice(right, m)]
+    /* istanbul ignore next */
+    if (document.getElementById('output')) {
+        document.getElementById('output').innerHTML += 'Merged Subarray:'
+        for (let i = 0; i < sorted_subarray.length; i++) {
+            document.getElementById('output').innerHTML += ' ' + sorted_subarray[i]
+        }
+        document.getElementById('output').innerHTML += '<br>'
+    }
+
+    return sorted_subarray
 }
 
 module.exports = {

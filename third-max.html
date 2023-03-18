@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sorting Algorithms</title>
-    <script src="js/sort.js"></script>
+    <title>Third Max Algorithms</title>
+    <script src="js/third_max.js"></script>
     <script>
       function synthesize(elements) {
         const pattern = /^-?\d+(,\s-?\d+)*$/
@@ -10,16 +10,14 @@
             return elements.split(', ').map(Number)
         }
         alert("Please enter comma-separated numerical values (e.g., 1, -23, 456)")
-        // FIXME: return value is `undefined` to bubble_sort function
       }
     </script>
   </head>
   <body>
-    <h1>Sorting Algorithms</h2>
+    <h1>Third Max Algorithms</h2>
     Size: <input type="number" name="size" id="size">
     Elements: <input name="elements" id="elements"><br>
-    <button onclick="bubble_sort(synthesize(document.getElementById('elements').value), document.getElementById('size').value)">Bubble Sort</button>
-    <button onclick="merge_sort(synthesize(document.getElementById('elements').value), document.getElementById('size').value)">Merge Sort</button>
+    <button onclick="find_third_max(synthesize(document.getElementById('elements').value), document.getElementById('size').value)">Run</button>
     <div id="output"></div>
   </body>
 </html>
