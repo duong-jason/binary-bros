@@ -24,7 +24,7 @@ function bubble_sort(arr, n) {
 
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n-i-1; j++) {
-            output += `${i+1})` + (arr[j] > arr[j+1] ? prettify(arr, j, 'red') : prettify(arr, j, 'green')) + '<br>'
+            output += `${i+1})` + prettify(arr, j, (arr[j] > arr[j+1]) ? 'red' : 'green') + '<br>'
             if (arr[j] > arr[j+1]) {
                 [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
             }

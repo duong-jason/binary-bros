@@ -6,14 +6,11 @@
     <script>
       function synthesize(elements) {
         const pattern = /^-?\d+(,\s-?\d+)*$/
-        try {
-          if (!pattern.test(elements)) {
-            throw 'Please enter comma-separated numerical values\nExample: 1, 23, 456'
-          }
-          return elements.split(', ').map(Number)
-        } catch (err) {
-          document.getElementById('output').innerHTML = err
+        if (pattern.test(elements)) {
+            return elements.split(', ').map(Number)
         }
+        alert("Please enter comma-separated numerical values (e.g., 1, -23, 456)")
+        // FIXME: return value is `undefined` to bubble_sort function
       }
     </script>
   </head>

@@ -9,5 +9,5 @@ node sort.js
 ## Tests
 ```bash
 npm install jest jest-environment-jsdom
-npm run test
+npm test
 ```
