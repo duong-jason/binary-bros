@@ -15,7 +15,7 @@ function bubble_sort(arr, n) {
 
     // FIXME: Expected size=, Got size=1
     // Happens when correct input to 'element' field but 'size' field wasn't specified
-    if (n == "") n = null
+    if (n === "") n = null
 
     if (n != arr.length) {
         message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`
@@ -42,7 +42,7 @@ function bubble_sort(arr, n) {
 function merge_sort(arr, n=null) {
     // FIXME: Expected size=, Got size=1
     // Happens when correct input to 'element' field but 'size' field wasn't specified
-    if (n == "") {
+    if (n === "") {
         n = null
     } else if (n === null) {
         n = arr.length
