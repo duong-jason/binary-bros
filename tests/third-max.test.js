@@ -1,4 +1,4 @@
-const third_max = require('../js/third_max.js') 
+const third_max = require('../js/third-max.js')
 const third_max_modules = [third_max]
 
 function runner(third_max) {

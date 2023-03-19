@@ -4,7 +4,7 @@
     <title>Third Max Algorithms</title>
     <script src="js/third_max.js"></script>
     <script>
-      function synthesize(elements) {
+      function preprocess(elements) {
         const pattern = /^-?\d+(,\s-?\d+)*$/
         if (pattern.test(elements)) {
             return elements.split(', ').map(Number)
@@ -17,7 +17,7 @@
     <h1>Third Max Algorithms</h2>
     Size: <input type="number" name="size" id="size">
     Elements: <input name="elements" id="elements"><br>
-    <button onclick="find_third_max(synthesize(document.getElementById('elements').value), document.getElementById('size').value)">Run</button>
+    <button onclick="find_third_max(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Run</button>
     <div id="output"></div>
   </body>
 </html>

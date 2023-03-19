@@ -13,8 +13,12 @@ function prettify(arr, start, color) {
 function bubble_sort(arr, n) {
     var output = ''
 
+    // FIXME: Expected size=, Got size=1
+    // Happens when correct input to 'element' field but 'size' field wasn't specified
+    if (n == "") n = null
+
     if (n != arr.length) {
-        message = `Expected size=${n}, Got size=${arr.length}`
+        message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`
         alert(message)
         throw new RangeError(message)
     }
@@ -36,10 +40,16 @@ function bubble_sort(arr, n) {
 }
 
 function merge_sort(arr, n=null) {
-    if (n === null) {
+    // FIXME: Expected size=, Got size=1
+    // Happens when correct input to 'element' field but 'size' field wasn't specified
+    if (n == "") {
+        n = null
+    } else if (n === null) {
         n = arr.length
-    } else if (n != arr.length) {
-        message = `Expected size=${n}, Got size=${arr.length}`
+    }
+
+    if (n != arr.length) {
+        message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`
         alert(message)
         throw new RangeError(message)
     }

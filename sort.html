@@ -4,13 +4,15 @@
     <title>Sorting Algorithms</title>
     <script src="js/sort.js"></script>
     <script>
-      function synthesize(elements) {
+      function preprocess(elements) {
         const pattern = /^-?\d+(,\s-?\d+)*$/
         if (pattern.test(elements)) {
             return elements.split(', ').map(Number)
         }
         alert("Please enter comma-separated numerical values (e.g., 1, -23, 456)")
-        // FIXME: return value is `undefined` to bubble_sort function
+        // FIXME: return value is `undefined` to sorting functions
+        // Happens when no user input in the 'element' text field
+        // TypeError: Cannot read properties of undefined (reading 'length')
       }
     </script>
   </head>
@@ -18,8 +20,8 @@
     <h1>Sorting Algorithms</h2>
     Size: <input type="number" name="size" id="size">
     Elements: <input name="elements" id="elements"><br>
-    <button onclick="bubble_sort(synthesize(document.getElementById('elements').value), document.getElementById('size').value)">Bubble Sort</button>
-    <button onclick="merge_sort(synthesize(document.getElementById('elements').value), document.getElementById('size').value)">Merge Sort</button>
+    <button onclick="bubble_sort(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Bubble Sort</button>
+    <button onclick="merge_sort(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Merge Sort</button>
     <div id="output"></div>
   </body>
 </html>
