@@ -2,10 +2,10 @@
 <html>
   <head>
     <title>Third Max Algorithms</title>
-    <script src="js/third_max.js"></script>
+    <script src="js/third-max.js"></script>
     <script>
       function preprocess(elements) {
-        const pattern = /^-?\d+(,\s-?\d+)*$/
+        const pattern = /^-?\d+(\.\d+)?(,\s-?\d+(\.\d+)?)*$/
         if (pattern.test(elements)) {
             return elements.split(', ').map(Number)
         }
@@ -18,6 +18,7 @@
     Size: <input type="number" name="size" id="size">
     Elements: <input name="elements" id="elements"><br>
     <button onclick="find_third_max(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Run</button>
+    <button onclick="document.getElementById('output').innerHTML = ''">Clear</button>
     <div id="output"></div>
   </body>
 </html>

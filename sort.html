@@ -5,11 +5,12 @@
     <script src="js/sort.js"></script>
     <script>
       function preprocess(elements) {
-        const pattern = /^-?\d+(,\s-?\d+)*$/
+        // accepts any sequence of signed decimal numbers
+        const pattern = /^-?\d+(\.\d+)?(,\s-?\d+(\.\d+)?)*$/
         if (pattern.test(elements)) {
             return elements.split(', ').map(Number)
         }
-        alert("Please enter comma-separated numerical values (e.g., 1, -23, 456)")
+        alert("Please enter comma-separated numerical values (e.g., 1, -23, 45.67)")
         // FIXME: return value is `undefined` to sorting functions
         // Happens when no user input in the 'element' text field
         // TypeError: Cannot read properties of undefined (reading 'length')
@@ -22,6 +23,7 @@
     Elements: <input name="elements" id="elements"><br>
     <button onclick="bubble_sort(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Bubble Sort</button>
     <button onclick="merge_sort(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Merge Sort</button>
+    <button onclick="document.getElementById('output').innerHTML = ''">Clear</button>
     <div id="output"></div>
   </body>
 </html>

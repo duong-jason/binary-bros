@@ -1,6 +1,10 @@
 function find_third_max(arr, n) {
+    if (n === "") {
+       n = null
+    }
+
     if (n != arr.length) {
-        message = `Expected size=${n}, Got size=${arr.length}`
+        message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`
         alert(message)
         throw new RangeError(message)
     } else if (n < 3) {

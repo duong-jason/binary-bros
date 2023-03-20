@@ -1,13 +1,9 @@
 function prettify(arr, start, color) {
-    var output = ''
-    for (let i = 0; i < start; i++) {
-        output += ' ' + arr[i]
-    }
-    output += `<span style='color: ${color};'> ${arr[start]} ${arr[start+1]}</span>`
-    for (let i = start+2; i < arr.length; i++) {
-        output += ' ' + arr[i]
-    }
-    return output
+    return (
+        arr.slice(0, start).join(' ') +
+        `<span style='color: ${color};'> ${arr[start]} ${arr[start+1]} </span>` +
+        arr.slice(start+2).join(' ')
+    )
 }
 
 function bubble_sort(arr, n) {
@@ -25,16 +21,16 @@ function bubble_sort(arr, n) {
 
     for (let i = 0; i < n-1; i++) {
         for (let j = 0; j < n-i-1; j++) {
-            output += `${i+1})` + prettify(arr, j, (arr[j] > arr[j+1]) ? 'red' : 'green') + '<br>'
+            output += `${i+1}) ` + prettify(arr, j, (arr[j] > arr[j+1]) ? 'Tomato' : 'MediumSeaGreen') + '<br>'
             if (arr[j] > arr[j+1]) {
                 [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
             }
         }
-        output += `Result: ${arr}<br>`
+        output += `Result: ${arr.join(' ')}<br>`
     }
     /* istanbul ignore next */
     if (document.getElementById('output')) {
-        document.getElementById('output').innerHTML = output + `Sorted Array ${arr}`
+        document.getElementById('output').innerHTML = output + `Sorted Array ${arr.join(' ')}`
     }
     return arr
 }
@@ -54,29 +50,30 @@ function merge_sort(arr, n=null) {
         throw new RangeError(message)
     }
 
-    /* either one element from split or input array with less than 1 element */
-    /* TODO: does not print out for single elements */
-    if (n <= 1) {
-        return arr
-    }
+    let result = null
 
-    let left = arr.slice(0, Math.floor(n/2))
-    let right = arr.slice(Math.floor(n/2))
+    /* either one element from split or input array with less than 1 element */
+    if (n <= 1) {
+        result = arr
+    } else {
+        const mid = Math.floor(n/2)
+        let left = arr.slice(0, mid)
+        let right = arr.slice(mid)
+
+        /* istanbul ignore next */
+        if (document.getElementById('output')) {
+            document.getElementById('output').innerHTML += 'Split Array: ' + prettify(arr, mid-1, 'Tomato') + '<br>'
+        }
+
+        result = merge(merge_sort(left), merge_sort(right))
+    }
 
     /* istanbul ignore next */
     if (document.getElementById('output')) {
-        document.getElementById('output').innerHTML += 'Split Array:'
-        for (let i = 0; i < left.length; i++) {
-            document.getElementById('output').innerHTML += ' ' + left[i]
-        }
-        document.getElementById('output').innerHTML += '&nbsp'.repeat(2)
-        for (let i = 0; i < right.length; i++) {
-            document.getElementById('output').innerHTML += ' ' + right[i]
-        }
-        document.getElementById('output').innerHTML += '<br>'
+        document.getElementById('output').innerHTML += 'Sorted Array: ' + result.join(' ') + '<br>'
     }
 
-    return merge(merge_sort(left), merge_sort(right))
+    return result
 }
 
 function merge(a, b) {
@@ -88,18 +85,7 @@ function merge(a, b) {
     }
 
     /* either sorted array `a` or `b` must be empty and the other with at least one element */
-    sorted_subarray = [...c, ...a.slice(p, n), ...b.slice(q, m)]
-
-    /* istanbul ignore next */
-    if (document.getElementById('output')) {
-        document.getElementById('output').innerHTML += 'Merged Subarray:'
-        for (let i = 0; i < sorted_subarray.length; i++) {
-            document.getElementById('output').innerHTML += ' ' + sorted_subarray[i]
-        }
-        document.getElementById('output').innerHTML += '<br>'
-    }
-
-    return sorted_subarray
+    return [...c, ...a.slice(p, n), ...b.slice(q, m)]
 }
 
 module.exports = {
