@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Sorting Algorithms</title>
+    <link rel="stylesheet" href="sortstyle.css" />
     <script src="js/sort.js"></script>
     <script>
       function preprocess(elements) {
@@ -18,12 +19,45 @@
     </script>
   </head>
   <body>
-    <h1>Sorting Algorithms</h2>
-    Size: <input type="number" name="size" id="size">
-    Elements: <input name="elements" id="elements"><br>
-    <button onclick="bubble_sort(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Bubble Sort</button>
-    <button onclick="merge_sort(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Merge Sort</button>
-    <button onclick="document.getElementById('output').innerHTML = ''">Clear</button>
-    <div id="output"></div>
+    <h1 class="sortalgo">Sorting Algorithms</h2>
+    <div class="algos-container">
+      <div class="bubble-container">
+        <div class="title-container">
+          <h2>Bubble Sort</h2>
+        </div>
+        <div class="inputs">
+          <div>
+            <label for="size">Size:</label><br>
+            <input type="number" name="size" id="size">
+          </div>
+          <div>
+            <label for="elements">Elements:</label><br>
+            <input name="elements" id="elements"><br>
+          </div>
+        </div>
+        <button class="btn" onclick="bubble_sort(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Sort</button>
+        <div class="output" id="output"></div>
+        <div class="complexity">
+          Complexity: O(n^2)
+        </div>
+      </div>
+      <div class="merge-container">
+        <div class="title-container">
+          <h2>Merge Sort</h2>
+        </div>
+        <button class="btn" onclick="merge_sort(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Sort</button>
+        <button class="btn" onclick="document.getElementById('output').innerHTML = ''">Clear</button>
+      </div>
+    </div>
+    <div class="back-container">
+      <button class="back-btn" onclick="window.location.href='./index.html';">back</button>
+    </div>
+    <div class="credits">
+      <p>
+        By: Maria Fernandez | Brian Fedelin | Jason Duong | Dylan Gunter | Josue
+        Han Yan Tai Liu
+      </p>
+      <p>CPSC 362 Spring 2023</p>
+    </div>
   </body>
 </html>
