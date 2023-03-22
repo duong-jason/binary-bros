@@ -1,5 +1,5 @@
-const third_max = require('../js/third-max.js')
-const third_max_modules = [third_max]
+const { naive_third_max, optimal_third_max }  = require('../js/third-max.js')
+const third_max_modules = [naive_third_max, optimal_third_max]
 
 function runner(third_max) {
     describe(third_max.name, () => {

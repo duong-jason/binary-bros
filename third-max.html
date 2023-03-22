@@ -17,7 +17,8 @@
     <h1>Third Max Algorithms</h2>
     Size: <input type="number" name="size" id="size">
     Elements: <input name="elements" id="elements"><br>
-    <button onclick="find_third_max(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Run</button>
+    <button onclick="naive_third_max(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Naive</button>
+    <button onclick="optimal_third_max(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Optimal</button>
     <button onclick="document.getElementById('output').innerHTML = ''">Clear</button>
     <div id="output"></div>
   </body>
