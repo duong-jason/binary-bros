@@ -27,16 +27,17 @@
         </div>
         <div class="inputs">
           <div>
-            <label for="size">Size:</label><br>
-            <input type="number" name="size" id="size">
+            <label for="size-1">Size:</label><br>
+            <input type="number" name="size-1" id="size-1">
           </div>
           <div>
             <label for="elements">Elements:</label><br>
-            <input name="elements" id="elements"><br>
+            <input name="elements" id="elements-1"><br>
           </div>
         </div>
-        <button class="btn" onclick="bubble_sort(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Sort</button>
-        <div class="output" id="output"></div>
+        <button class="btn" onclick="bubble_sort(preprocess(document.getElementById('elements-1').value), document.getElementById('size-1').value)">Sort</button>
+        <button class="btn" onclick="document.getElementById('output_1').innerHTML = ''">Clear</button>
+        <div class="output_1" id="output_1"></div>
         <div class="complexity">
           Complexity: O(n^2)
         </div>
@@ -45,8 +46,22 @@
         <div class="title-container">
           <h2>Merge Sort</h2>
         </div>
-        <button class="btn" onclick="merge_sort(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Sort</button>
-        <button class="btn" onclick="document.getElementById('output').innerHTML = ''">Clear</button>
+        <div class="inputs">
+          <div>
+            <label for="size-2">Size:</label><br>
+            <input type="number" name="size-2" id="size-2">
+          </div>
+          <div>
+            <label for="elements">Elements:</label><br>
+            <input name="elements" id="elements-2"><br>
+          </div>
+        </div>
+        <button class="btn" onclick="merge_sort(preprocess(document.getElementById('elements-2').value), document.getElementById('size-2').value)">Sort</button>
+        <button class="btn" onclick="document.getElementById('output_2').innerHTML = ''">Clear</button>
+        <div class="output_2" id="output_2"></div>
+        <div class="complexity">
+          Complexity: O(n*logn)
+        </div>
       </div>
     </div>
     <div class="back-container">

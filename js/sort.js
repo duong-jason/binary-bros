@@ -29,8 +29,8 @@ function bubble_sort(arr, n) {
         output += `Result: ${arr.join(' ')}<br>`
     }
     /* istanbul ignore next */
-    if (document.getElementById('output')) {
-        document.getElementById('output').innerHTML = output + `Sorted Array ${arr.join(' ')}`
+    if (document.getElementById('output_1')) {
+        document.getElementById('output_1').innerHTML = output + `Sorted Array ${arr.join(' ')}`
     }
     return arr
 }
@@ -61,16 +61,16 @@ function merge_sort(arr, n=null) {
         let right = arr.slice(mid)
 
         /* istanbul ignore next */
-        if (document.getElementById('output')) {
-            document.getElementById('output').innerHTML += 'Split Array: ' + prettify(arr, mid-1, 'Tomato') + '<br>'
+        if (document.getElementById('output_2')) {
+            document.getElementById('output_2').innerHTML += 'Split Array: ' + prettify(arr, mid-1, 'Tomato') + '<br>'
         }
 
         result = merge(merge_sort(left), merge_sort(right))
     }
 
     /* istanbul ignore next */
-    if (document.getElementById('output')) {
-        document.getElementById('output').innerHTML += 'Sorted Array: ' + result.join(' ') + '<br>'
+    if (document.getElementById('output_2')) {
+        document.getElementById('output_2').innerHTML += 'Merged Array: ' + result.join(' ') + '<br>'
     }
 
     return result

@@ -60,7 +60,7 @@ textarea {
   color: grey;
 }
 
-.output {
+div[id^='output_'] {
   background-color: white;
   color: grey;
   padding: 2vh;
