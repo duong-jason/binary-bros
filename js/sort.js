@@ -1,3 +1,9 @@
+function print(msg, id) {
+    if (document.getElementById(id)) {
+        document.getElementById(id).innerHTML += msg + '<br>'
+    }
+}
+
 function prettify(arr, start, color) {
     return (
         arr.slice(0, start).join(' ') +
@@ -7,12 +13,11 @@ function prettify(arr, start, color) {
 }
 
 function bubble_sort(arr, n) {
-    var output = ''
-
     // FIXME: Expected size=, Got size=1
     // Happens when correct input to 'element' field but 'size' field wasn't specified
-    if (n === "") n = null
-
+    if (n === "") {
+        n = null
+    }
     if (n != arr.length) {
         message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`
         alert(message)
@@ -21,29 +26,23 @@ function bubble_sort(arr, n) {
 
     for (let i = 0; i < n-1; i++) {
         for (let j = 0; j < n-i-1; j++) {
-            output += `${i+1}) ` + prettify(arr, j, (arr[j] > arr[j+1]) ? 'Tomato' : 'MediumSeaGreen') + '<br>'
+            print(`${i+1}) ` + prettify(arr, j, (arr[j] > arr[j+1]) ? 'Tomato' : 'MediumSeaGreen'), 'output_1')
             if (arr[j] > arr[j+1]) {
                 [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
             }
         }
-        output += `Result: ${arr.join(' ')}<br>`
+        print(`Result: ${arr.join(' ')}`, 'output_1')
     }
-    /* istanbul ignore next */
-    if (document.getElementById('output_1')) {
-        document.getElementById('output_1').innerHTML = output + `Sorted Array ${arr.join(' ')}`
-    }
+    print(`Sorted Array: ${arr.join(' ')}`, 'output_1')
     return arr
 }
 
 function merge_sort(arr, n=null) {
-    // FIXME: Expected size=, Got size=1
-    // Happens when correct input to 'element' field but 'size' field wasn't specified
     if (n === "") {
         n = null
     } else if (n === null) {
         n = arr.length
     }
-
     if (n != arr.length) {
         message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`
         alert(message)
@@ -57,22 +56,13 @@ function merge_sort(arr, n=null) {
         result = arr
     } else {
         const mid = Math.floor(n/2)
-        let left = arr.slice(0, mid)
-        let right = arr.slice(mid)
+        let [left, right] = [arr.slice(0, mid), arr.slice(mid)]
 
-        /* istanbul ignore next */
-        if (document.getElementById('output_2')) {
-            document.getElementById('output_2').innerHTML += 'Split Array: ' + prettify(arr, mid-1, 'Tomato') + '<br>'
-        }
-
+        print(`Split Array: ${prettify(arr, mid-1, 'Tomato')}`, 'output_2')
         result = merge(merge_sort(left), merge_sort(right))
     }
 
-    /* istanbul ignore next */
-    if (document.getElementById('output_2')) {
-        document.getElementById('output_2').innerHTML += 'Merged Array: ' + result.join(' ') + '<br>'
-    }
-
+    print(`Merged Array: ${result.join(' ')}`, 'output_2')
     return result
 }
 

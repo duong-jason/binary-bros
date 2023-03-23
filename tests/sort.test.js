@@ -5,8 +5,8 @@ function runner(func) {
     describe(func.name, () => {
         test("Invalid value for array length", () => {
             expect(() => {
-                func([], 1)
-            }).toThrow('Expected size=1, Got size=0')
+                func([1], 2)
+            }).toThrow('Expected size=2, Got size=1')
         })
 
         test("Single element input", () => {

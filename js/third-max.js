@@ -1,3 +1,9 @@
+function print(msg, id) {
+    if (document.getElementById(id)) {
+        document.getElementById(id).innerHTML += msg + '<br>'
+    }
+}
+
 function prettify(arr, start, color) {
     return (
         arr.slice(0, start).join(' ') +
@@ -7,14 +13,11 @@ function prettify(arr, start, color) {
 }
 
 function merge_sort(arr, n=null) {
-    // FIXME: Expected size=, Got size=1
-    // Happens when correct input to 'element' field but 'size' field wasn't specified
     if (n === "") {
         n = null
     } else if (n === null) {
         n = arr.length
     }
-
     if (n != arr.length) {
         message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`
         alert(message)
@@ -28,22 +31,13 @@ function merge_sort(arr, n=null) {
         result = arr
     } else {
         const mid = Math.floor(n/2)
-        let left = arr.slice(0, mid)
-        let right = arr.slice(mid)
+        let [left, right] = [arr.slice(0, mid), arr.slice(mid)]
 
-        /* istanbul ignore next */
-        if (document.getElementById('output')) {
-            document.getElementById('output').innerHTML += 'Split Array: ' + prettify(arr, mid-1, 'Tomato') + '<br>'
-        }
-
+        print(`Split Array: ${prettify(arr, mid-1, 'Tomato')}`, 'output')
         result = merge(merge_sort(left), merge_sort(right))
     }
 
-    /* istanbul ignore next */
-    if (document.getElementById('output')) {
-        document.getElementById('output').innerHTML += 'Merged Array: ' + result.join(' ') + '<br>'
-    }
-
+    print(`Merged Array: ${result.join(' ')}`, 'output')
     return result
 }
 
@@ -62,24 +56,20 @@ function merge(a, b) {
 // O(n)
 function optimal_third_max(arr, n) {
     if (n === "") {
-       n = null
+        n = null
     }
-
     if (n != arr.length) {
         message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`
         alert(message)
         throw new RangeError(message)
     } else if (n < 3) {
-        /* istanbul ignore next */
-        if (document.getElementById('output')) {
-            document.getElementById('output').innerHTML = `Third Max Element: None`
-        }
+        print('Third Max Element: None', 'output')
         return null
     }
 
-    f_max = Number.NEGATIVE_INFINITY
-    s_max = Number.NEGATIVE_INFINITY
-    t_max = Number.NEGATIVE_INFINITY
+    let f_max = Number.NEGATIVE_INFINITY
+    let s_max = Number.NEGATIVE_INFINITY
+    let t_max = Number.NEGATIVE_INFINITY
 
     for (let i = 0; i < n; i++) {
         if (arr[i] >= f_max) {
@@ -89,46 +79,30 @@ function optimal_third_max(arr, n) {
         } else if (arr[i] >= t_max) {
             t_max = arr[i]
         }
-        /* istanbul ignore next */
-        if (document.getElementById('output')) {
-            document.getElementById('output').innerHTML += `${i+1}) First Max: ${f_max}, Second Max: ${s_max}, Third Max: ${t_max}<br>`
-        }
+        print(`${i+1}) First Max: ${f_max}, Second Max: ${s_max}, Third Max: ${t_max}`, 'output')
     }
-
-    /* istanbul ignore next */
-    if (document.getElementById('output')) {
-        document.getElementById('output').innerHTML += `Third Max Element: ${t_max}`
-    }
-
+    print(`Third Max Element: ${t_max}`, 'output')
     return t_max
 }
 
 // O(nlogn)
 function naive_third_max(arr, n) {
     if (n === "") {
-       n = null
+        n = null
     }
-
     if (n != arr.length) {
         message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`
         alert(message)
         throw new RangeError(message)
     } else if (n < 3) {
-        /* istanbul ignore next */
-        if (document.getElementById('output')) {
-            document.getElementById('output').innerHTML = `Third Max Element: None`
-        }
+        print('Third Max Element: None', 'output')
         return null
     }
 
     const sorted_arr = merge_sort(arr, n)
     const t_max = sorted_arr[sorted_arr.length-3]
 
-    /* istanbul ignore next */
-    if (document.getElementById('output')) {
-        document.getElementById('output').innerHTML += `Third Max Element: ${t_max}`
-    }
-
+    print(`Third Max Element: ${t_max}`, 'output')
     return t_max
 }
 
