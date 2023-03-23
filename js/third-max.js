@@ -81,7 +81,7 @@ function optimal_third_max(arr, n) {
     s_max = Number.NEGATIVE_INFINITY
     t_max = Number.NEGATIVE_INFINITY
 
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < n; i++) {
         if (arr[i] >= f_max) {
             t_max = s_max, s_max = f_max, f_max = arr[i]
         } else if (arr[i] >= s_max) {

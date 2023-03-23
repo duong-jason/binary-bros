@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Max-Sum Subarray Algorithms</title>
+    <script src="js/max-sum.js"></script>
+    <script>
+      function preprocess(elements) {
+        const pattern = /^-?\d+(\.\d+)?(,\s-?\d+(\.\d+)?)*$/
+        if (pattern.test(elements)) {
+            return elements.split(', ').map(Number)
+        }
+        alert("Please enter comma-separated numerical values (e.g., 1, -23, 456)")
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Max-Sum Algorithms</h2>
+    Size: <input type="number" name="size" id="size">
+    Elements: <input name="elements" id="elements"><br>
+    <button onclick="naive_max_sum(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Naive</button>
+    <button onclick="optimal_max_sum(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Optimal</button>
+    <button onclick="document.getElementById('output').innerHTML = ''">Clear</button>
+    <div id="output"></div>
+  </body>
+</html>
