@@ -38,10 +38,10 @@ function naive_max_sum(arr, n) {
         for (let i = 0; i < n; i++) {
             for (let j = i+1; j <= n; j++) {
                 sub_arr = arr.slice(i, j)
-                print(prettify(arr, i, j, "Orange") + ' => ' + sub_arr.sum(), 'output')
+                print(prettify(arr, i, j, "Orange") + ' => ' + sub_arr.sum(), 'output_1')
                 yield [arr.slice(i, j), sub_arr.sum()]
             }
-            print(`Current Sum = ${sub_arr.sum()} and Max Sum = ${max_sum}`, 'output')
+            print(`Current Sum = ${sub_arr.sum()} and Max Sum = ${max_sum}`, 'output_1')
         }
     }
 
@@ -51,7 +51,7 @@ function naive_max_sum(arr, n) {
            max_subarray = sub_arr
         }
     }
-    print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(', ')}`, 'output')
+    print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(', ')}`, 'output_1')
     return max_sum
 }
 
@@ -80,10 +80,10 @@ function optimal_max_sum(arr, n) {
             max_sum = curr_sum
             max_subarray = arr.slice(last_idx, i+1)
         }
-        print(prettify(arr, last_idx, i+1, (curr_sum < 0) ? 'Tomato' : 'MediumSeaGreen'), 'output')
-        print(`Current Sum = ${curr_sum} and Max Sum = ${max_sum}`, 'output')
+        print(prettify(arr, last_idx, i+1, (curr_sum < 0) ? 'Tomato' : 'MediumSeaGreen'), 'output_2')
+        print(`Current Sum = ${curr_sum} and Max Sum = ${max_sum}`, 'output_2')
     }
-    print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(', ')}`, 'output')
+    print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(', ')}`, 'output_2')
     return max_sum
 }
 

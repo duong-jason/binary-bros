@@ -37,11 +37,11 @@ function merge_sort(arr, n=null) {
         const mid = Math.floor(n/2)
         let [left, right] = [arr.slice(0, mid), arr.slice(mid)]
 
-        print(`Split Array: ${prettify(arr, mid-1, mid+1, 'Orange')}`, 'output')
+        print(`Split Array: ${prettify(arr, mid-1, mid+1, 'Orange')}`, 'output_1')
         result = merge(merge_sort(left), merge_sort(right))
     }
 
-    print(`Merged Array: ${result.join(', ')}`, 'output')
+    print(`Merged Array: ${result.join(', ')}`, 'output_1')
     return result
 }
 
@@ -67,7 +67,7 @@ function optimal_third_max(arr, n) {
         alert(message)
         throw new RangeError(message)
     } else if (n < 3) {
-        print('Third Max Element: None', 'output')
+        print('Third Max Element: None', 'output_2')
         return null
     }
 
@@ -83,9 +83,9 @@ function optimal_third_max(arr, n) {
         } else if (arr[i] >= t_max) {
             t_max = arr[i]
         }
-        print(`${i+1}) First Max: ${f_max}, Second Max: ${s_max}, Third Max: ${t_max}`, 'output')
+        print(`${i+1}) First Max: ${f_max}, Second Max: ${s_max}, Third Max: ${t_max}`, 'output_2')
     }
-    print(`Third Max Element: ${t_max}`, 'output')
+    print(`Third Max Element: ${t_max}`, 'output_2')
     return t_max
 }
 
@@ -99,14 +99,14 @@ function naive_third_max(arr, n) {
         alert(message)
         throw new RangeError(message)
     } else if (n < 3) {
-        print('Third Max Element: None', 'output')
+        print('Third Max Element: None', 'output_1')
         return null
     }
 
     const sorted_arr = merge_sort(arr, n)
     const t_max = sorted_arr[sorted_arr.length-3]
 
-    print(`Third Max Element: ${t_max}`, 'output')
+    print(`Third Max Element: ${t_max}`, 'output_1')
     return t_max
 }
 

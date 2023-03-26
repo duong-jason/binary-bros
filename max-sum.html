@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Max-Sum Subarray Algorithms</title>
+    <link rel="stylesheet" href="sortstyle.css" />
     <script src="js/max-sum.js"></script>
     <script>
       function preprocess(elements) {
@@ -14,12 +15,60 @@
     </script>
   </head>
   <body>
-    <h1>Max-Sum Algorithms</h2>
-    Size: <input type="number" name="size" id="size">
-    Elements: <input name="elements" id="elements"><br>
-    <button onclick="naive_max_sum(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Naive</button>
-    <button onclick="optimal_max_sum(preprocess(document.getElementById('elements').value), document.getElementById('size').value)">Optimal</button>
-    <button onclick="document.getElementById('output').innerHTML = ''">Clear</button>
-    <div id="output"></div>
+    <h1 class="sortalgo">Max Sum Algorithms</h2>
+      <div class="algos-container">
+        <div class="bubble-container">
+          <div class="title-container">
+            <h2>Naive Max Sum</h2>
+          </div>
+          <div class="inputs">
+            <div>
+              <label for="size-1">Size:</label><br>
+              <input type="number" name="size-1" id="size-1">
+            </div>
+            <div>
+              <label for="elements">Elements:</label><br>
+              <input name="elements" id="elements-1"><br>
+            </div>
+          </div>
+          <button class="btn" onclick="naive_max_sum(preprocess(document.getElementById('elements-1').value), document.getElementById('size-1').value)">Sort</button>
+          <button class="btn" onclick="document.getElementById('output_1').innerHTML = ''">Clear</button>
+          <div class="output_1" id="output_1"></div>
+          <div class="complexity">
+            Complexity: O(n^3)
+          </div>
+        </div>
+        <div class="merge-container">
+          <div class="title-container">
+            <h2>Optimal Max Sum</h2>
+          </div>
+          <div class="inputs">
+            <div>
+              <label for="size-2">Size:</label><br>
+              <input type="number" name="size-2" id="size-2">
+            </div>
+            <div>
+              <label for="elements">Elements:</label><br>
+              <input name="elements" id="elements-2"><br>
+            </div>
+          </div>
+          <button class="btn" onclick="optimal_max_sum(preprocess(document.getElementById('elements-2').value), document.getElementById('size-2').value)">Sort</button>
+          <button class="btn" onclick="document.getElementById('output_2').innerHTML = ''">Clear</button>
+          <div class="output_2" id="output_2"></div>
+          <div class="complexity">
+            Complexity: O(n)
+          </div>
+        </div>
+      </div>
+      <div class="back-container">
+        <button class="back-btn" onclick="window.location.href='./index.html';">back</button>
+      </div>
+      <div class="credits">
+        <p>
+          By: Maria Fernandez | Brian Fedelin | Jason Duong | Dylan Gunter | Josue
+          Han Yan Tai Liu
+        </p>
+        <p>CPSC 362 Spring 2023</p>
+      </div>
   </body>
 </html>
