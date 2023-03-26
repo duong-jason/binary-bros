@@ -4,13 +4,13 @@ function print(msg, id) {
     }
 }
 
-function prettify(arr, start, color) {
+function prettify(arr, start, end, color) {
     var output = ''
     for (let i = 0; i < start; i++) {
         output += arr[i] + ', '
     }
-    output += `<span style='color: ${color};'> ${arr[start]}, ${arr[start+1]}</span>`
-    for (let i = start+2; i < arr.length; i++) {
+    output += `<span style='color: ${color};'> ${arr.slice(start, end).join(', ')}</span>`
+    for (let i = end; i < arr.length; i++) {
         output += ', ' + arr[i]
     }
     return output
@@ -37,7 +37,7 @@ function merge_sort(arr, n=null) {
         const mid = Math.floor(n/2)
         let [left, right] = [arr.slice(0, mid), arr.slice(mid)]
 
-        print(`Split Array: ${prettify(arr, mid-1, 'Tomato')}`, 'output')
+        print(`Split Array: ${prettify(arr, mid-1, mid+1, 'Orange')}`, 'output')
         result = merge(merge_sort(left), merge_sort(right))
     }
 

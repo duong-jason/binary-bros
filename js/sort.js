@@ -4,13 +4,13 @@ function print(msg, id) {
     }
 }
 
-function prettify(arr, start, color) {
+function prettify(arr, start, end, color) {
     var output = ''
     for (let i = 0; i < start; i++) {
         output += arr[i] + ', '
     }
-    output += `<span style='color: ${color};'> ${arr[start]}, ${arr[start+1]}</span>`
-    for (let i = start+2; i < arr.length; i++) {
+    output += `<span style='color: ${color};'> ${arr.slice(start, end).join(', ')}</span>`
+    for (let i = end; i < arr.length; i++) {
         output += ', ' + arr[i]
     }
     return output
@@ -30,7 +30,7 @@ function bubble_sort(arr, n) {
 
     for (let i = 0; i < n-1; i++) {
         for (let j = 0; j < n-i-1; j++) {
-            print(`${i+1}) ` + prettify(arr, j, (arr[j] > arr[j+1]) ? 'Tomato' : 'MediumSeaGreen'), 'output_1')
+            print(`${i+1}) ` + prettify(arr, j, j+2, (arr[j] > arr[j+1]) ? 'Tomato' : 'MediumSeaGreen'), 'output_1')
             if (arr[j] > arr[j+1]) {
                 [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
             }
@@ -62,7 +62,7 @@ function merge_sort(arr, n=null) {
         const mid = Math.floor(n/2)
         let [left, right] = [arr.slice(0, mid), arr.slice(mid)]
 
-        print(`Split Array: ${prettify(arr, mid-1, 'Tomato')}`, 'output_2')
+        print(`Split Array: ${prettify(arr, mid-1, mid+1, 'Orange')}`, 'output_2')
         result = merge(merge_sort(left), merge_sort(right))
     }
 
