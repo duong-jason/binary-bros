@@ -4,9 +4,14 @@
 
 ## Installation
 ```bash
+
 npm install jest jest-environment-jsdom
+
 ```
+
 ## Tests
 ```bash
+
 npm test
+
 ```

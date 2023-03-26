@@ -6,15 +6,14 @@
     <script src="js/sort.js"></script>
     <script>
       function preprocess(elements) {
-        // accepts any sequence of signed decimal numbers
+        // Language accepts any comma-spaced sequence of signed decimal numbers
         const pattern = /^-?\d+(\.\d+)?(,\s-?\d+(\.\d+)?)*$/
         if (pattern.test(elements)) {
             return elements.split(', ').map(Number)
         }
         alert("Please enter comma-separated numerical values (e.g., 1, -23, 45.67)")
-        // FIXME: return value is `undefined` to sorting functions
+        // FIXME: TypeError: Cannot read properties of undefined (reading 'length')
         // Happens when no user input in the 'element' text field
-        // TypeError: Cannot read properties of undefined (reading 'length')
       }
     </script>
   </head>

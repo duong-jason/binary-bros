@@ -5,11 +5,15 @@ function print(msg, id) {
 }
 
 function prettify(arr, start, color) {
-    return (
-        arr.slice(0, start).join(' ') +
-        `<span style='color: ${color};'> ${arr[start]} ${arr[start+1]} </span>` +
-        arr.slice(start+2).join(' ')
-    )
+    var output = ''
+    for (let i = 0; i < start; i++) {
+        output += arr[i] + ', '
+    }
+    output += `<span style='color: ${color};'> ${arr[start]}, ${arr[start+1]}</span>`
+    for (let i = start+2; i < arr.length; i++) {
+        output += ', ' + arr[i]
+    }
+    return output
 }
 
 function merge_sort(arr, n=null) {
@@ -37,7 +41,7 @@ function merge_sort(arr, n=null) {
         result = merge(merge_sort(left), merge_sort(right))
     }
 
-    print(`Merged Array: ${result.join(' ')}`, 'output')
+    print(`Merged Array: ${result.join(', ')}`, 'output')
     return result
 }
 

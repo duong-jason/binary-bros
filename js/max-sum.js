@@ -4,7 +4,7 @@ function print(msg, id) {
     }
 }
 
-// O(n^3) - including reduce function
+// O(n^2)
 function naive_max_sum(arr, n) {
     if (n === "") {
         n = null
@@ -21,18 +21,18 @@ function naive_max_sum(arr, n) {
     for (let i = 0; i < n; i++) {
         for (let j = i; j < n; j++) {
             curr_max = arr.slice(i, j+1).reduce((a, b) => a + b, 0)
-            print(arr.slice(i, j+1).join(' ') + ' => ' + curr_max, 'output')
+            print(`${i+1}) ` + arr.slice(i, j+1).join(', ') + ' => ' + curr_max, 'output')
             if (curr_max > max_sum) {
                 max_sum = curr_max
                 max_subarray = arr.slice(i, j+1)
             }
         }
-        print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(' ')}`, 'output')
+        print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(', ')}`, 'output')
     }
     return max_sum
 }
 
-// O(n) -- https://en.wikipedia.org/wiki/Maximum_subarray_problem
+// O(n) -- \ref{https://en.wikipedia.org/wiki/Maximum_subarray_problem}
 function optimal_max_sum(arr, n) {
     if (n === "") {
         n = null
@@ -62,7 +62,7 @@ function optimal_max_sum(arr, n) {
         }
         print(`${i+1}) Current Sum = ${curr_sum} and Max Sum = ${max_sum}`, 'output')
     }
-    print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(' ')}`, 'output')
+    print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(', ')}`, 'output')
     return max_sum
 }
 
