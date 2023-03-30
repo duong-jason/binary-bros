@@ -20,7 +20,7 @@ function prettify(arr, start, end, color) {
     return output
 }
 
-// O(n^3)
+// O(n^2)
 function naive_max_sum(arr, n) {
     if (n === "") {
         n = null
@@ -31,27 +31,23 @@ function naive_max_sum(arr, n) {
         throw new RangeError(message)
     }
 
-    let [max_sum, max_subarray] = [arr[0], arr]
+    let [max_sum, max_subarray] = [arr[0], [arr[0]]]
 
     const combinations = function*(arr) {
-        let sub_arr = []
         for (let i = 0; i < n; i++) {
             for (let j = i+1; j <= n; j++) {
-                sub_arr = arr.slice(i, j)
-                print(prettify(arr, i, j, "Orange") + ' => ' + sub_arr.sum(), 'output')
-                yield [arr.slice(i, j), sub_arr.sum()]
+                print(prettify(arr, i, j, "Orange") + ' = ' + arr.slice(i, j).sum(), 'output_1')
+                yield [arr.slice(i, j).sum(), arr.slice(i, j)]
             }
-            print(`Current Sum = ${sub_arr.sum()} and Max Sum = ${max_sum}`, 'output')
+            print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(', ')}`, 'output_1')
         }
     }
 
-    for (const [sub_arr, curr_sum] of combinations(arr)) {
+    for (const [curr_sum, sub_arr] of combinations(arr)) {
         if (curr_sum > max_sum) {
-           max_sum = curr_sum
-           max_subarray = sub_arr
+           [max_sum, max_subarray] = [curr_sum, sub_arr]
         }
     }
-    print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(', ')}`, 'output')
     return max_sum
 }
 
@@ -66,24 +62,22 @@ function optimal_max_sum(arr, n) {
         throw new RangeError(message)
     }
 
-    let [max_sum, max_subarray] = [arr[0], arr]
-    let [curr_sum, last_idx] = [0, 0]
+    let [max_sum, max_subarray] = [arr[0], [arr[0]]]
+    let curr_sum = 0
 
-    for (let i = 0; i < n; i++) {
-        /* Negative subarrays will always reduces the maximum sum */
+    for (let i = j = 0; i < n; i++) {
+        // Negative subarrays will always reduces the maximum sum
+        // NOTE: the algorithm will choose the full array, [1, 2, -3, 4], instead of [4]
         if (curr_sum < 0) {
-            curr_sum = 0
-            last_idx = i
+            [curr_sum, j] = [0, i]
         }
-        curr_sum += arr[i]
-        if (curr_sum >= max_sum) {
-            max_sum = curr_sum
-            max_subarray = arr.slice(last_idx, i+1)
+        if ((curr_sum += arr[i]) > max_sum) {
+            [max_sum, max_subarray] = [curr_sum, arr.slice(j, i+1)]
         }
-        print(prettify(arr, last_idx, i+1, (curr_sum < 0) ? 'Tomato' : 'MediumSeaGreen'), 'output')
-        print(`Current Sum = ${curr_sum} and Max Sum = ${max_sum}`, 'output')
+        print(prettify(arr, j, i+1, (curr_sum < 0) ? 'Tomato' : 'MediumSeaGreen'), 'output_2')
+        print(`Current Sum = ${curr_sum} and Max Sum = ${max_sum}`, 'output_2')
     }
-    print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(', ')}`, 'output')
+    print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(', ')}`, 'output_2')
     return max_sum
 }
 

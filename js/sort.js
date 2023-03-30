@@ -66,7 +66,7 @@ function merge_sort(arr, n = null) {
 
   let result = null;
 
-  /* either one element from split or input array with less than 1 element */
+  // either one element from split or input array with less than 1 element
   if (n <= 1) {
     result = arr;
   } else {
@@ -95,11 +95,11 @@ function merge(a, b) {
     c.push(a[p] < b[q] ? a[p++] : b[q++]);
   }
 
-  /* either sorted array `a` or `b` must be empty and the other with at least one element */
+  // either sorted array `a` or `b` must be empty and the other with at least one element
   return [...c, ...a.slice(p, n), ...b.slice(q, m)];
 }
 
 module.exports = {
-  bubble: bubble_sort,
-  merge: merge_sort,
+  bubble_sort,
+  merge_sort,
 };

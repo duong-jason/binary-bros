@@ -1,5 +1,5 @@
-const { bubble, merge } = require('../js/sort.js') 
-const modules = [bubble, merge]
+const { bubble_sort, merge_sort } = require('../js/sort.js')
+const modules = [bubble_sort, merge_sort]
 
 function runner(func) {
     describe(func.name, () => {
