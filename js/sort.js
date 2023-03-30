@@ -26,7 +26,7 @@ function bubble_sort(arr, n) {
   }
   if (n != arr.length) {
     message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    alert(message);
+    print(message, 'output_1');
     throw new RangeError(message);
   }
 
@@ -60,7 +60,7 @@ function merge_sort(arr, n = null) {
   }
   if (n != arr.length) {
     message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    alert(message);
+    print(message, 'output_2');
     throw new RangeError(message);
   }
 

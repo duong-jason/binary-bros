@@ -19,15 +19,8 @@ function prettify(arr, start, end, color) {
 }
 
 function merge_sort(arr, n = null) {
-  if (n === "") {
-    n = null;
-  } else if (n === null) {
+  if (n === null) {
     n = arr.length;
-  }
-  if (n != arr.length) {
-    message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    alert(message);
-    throw new RangeError(message);
   }
 
   let result = null;
@@ -72,10 +65,10 @@ function naive_third_max(arr, n) {
   }
   if (n != arr.length) {
     message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    alert(message);
+    print(message, 'output_1');
     throw new RangeError(message);
   } else if (n < 3) {
-    print("Third Max Element: None", "output_1");
+    print("Third Max Element: N.A.", "output_1");
     return null;
   }
 
@@ -93,11 +86,11 @@ function optimal_third_max(arr, n) {
   }
   if (n != arr.length) {
     message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    alert(message);
+    print(message, 'output_2');
     throw new RangeError(message);
   } else if (n < 3) {
-    print("Third Max Element: None", "output_2");
-    console.log("Third Max Element: None");
+    print("Third Max Element: N.A.", "output_2");
+    console.log("Third Max Element: N.A.");
     return null;
   }
 
