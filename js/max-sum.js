@@ -31,19 +31,19 @@ function naive_max_sum(arr, n) {
         throw new RangeError(message)
     }
 
-    let [max_sum, max_subarray] = [arr[0], arr]
+    let [max_sum, max_subarray] = [arr[0], [arr[0]]]
 
     const combinations = function*(arr) {
         for (let i = 0; i < n; i++) {
             for (let j = i+1; j <= n; j++) {
                 print(prettify(arr, i, j, "Orange") + ' = ' + arr.slice(i, j).sum(), 'output_1')
-                yield [arr.slice(i, j), arr.slice(i, j).sum()]
+                yield [arr.slice(i, j).sum(), arr.slice(i, j)]
             }
             print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(', ')}`, 'output_1')
         }
     }
 
-    for (const [sub_arr, curr_sum] of combinations(arr)) {
+    for (const [curr_sum, sub_arr] of combinations(arr)) {
         if (curr_sum > max_sum) {
            [max_sum, max_subarray] = [curr_sum, sub_arr]
         }

@@ -55,7 +55,7 @@ function merge_sort(arr, n=null) {
 
     let result = null
 
-    /* either one element from split or input array with less than 1 element */
+    // either one element from split or input array with less than 1 element
     if (n <= 1) {
         result = arr
     } else {
@@ -66,7 +66,7 @@ function merge_sort(arr, n=null) {
         result = merge(merge_sort(left), merge_sort(right))
     }
 
-    print(`Merged Array: ${result.join(', ')}`, 'output_2')
+    print(`Merged/Sorted Array: ${result.join(', ')}`, 'output_2')
     return result
 }
 
@@ -78,11 +78,8 @@ function merge(a, b) {
         c.push((a[p] < b[q]) ? a[p++] : b[q++])
     }
 
-    /* either sorted array `a` or `b` must be empty and the other with at least one element */
+    // either sorted array `a` or `b` must be empty and the other with at least one element
     return [...c, ...a.slice(p, n), ...b.slice(q, m)]
 }
 
-module.exports = {
-    bubble: bubble_sort, 
-    merge: merge_sort
-}
+module.exports = { bubble_sort, merge_sort }
