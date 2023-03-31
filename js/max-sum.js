@@ -55,6 +55,12 @@ function naive_max_sum(arr, n) {
 }
 
 // O(n) -- \ref{https://en.wikipedia.org/wiki/Maximum_subarray_problem}
+// for any n-tuple, (a, ..., b, c) \subseteq arr s.t. 1 < |a, ..., b| < n, c > \sum_{i=a}^{c} arr[i] \iff \sum_{i=a}^{b} arr[i] < 0
+// ex: consider this subarray [2, -3, <c>]
+//  if <c> is negative, -1, then -1 > (-3 + 2 + -1) = -1 > -2
+//  if <c> is positive, 1, then 1 > (-3 + 2 + 1) = 1 > 0
+// negative subarrays will always reduce the current maximum sum
+// NOTE: the algorithm will choose the full array, [1, 2, -3, 4], instead of [4]
 function optimal_max_sum(arr, n) {
   if (n === "") {
     n = null;
@@ -69,9 +75,6 @@ function optimal_max_sum(arr, n) {
   let curr_sum = 0;
 
   for (let i = j = 0; i < n; i++) {
-    // negative subarrays will always reduces the maximum sum
-    // for any n-tuple, (a, ..., b, c) \subseteq arr where 1 <= a, b <= n-1, c > \sum_{i=a}^{c} arr[i] \iff \sum_{i=a}^{b} arr[i] < 0
-    // NOTE: the algorithm will choose the full array, [1, 2, -3, 4], instead of [4]
     if (curr_sum < 0) {
         [curr_sum, j] = [0, i];
     }
