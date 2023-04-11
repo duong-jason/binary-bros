@@ -26,7 +26,7 @@ function bubble_sort(arr, n) {
   }
   if (n != arr.length) {
     message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, 'output_1');
+    print(message, "output-1");
     throw new RangeError(message);
   }
 
@@ -40,15 +40,15 @@ function bubble_sort(arr, n) {
             j + 2,
             arr[j] > arr[j + 1] ? "Tomato" : "MediumSeaGreen"
           ),
-        "output_1"
+        "output-1"
       );
       if (arr[j] > arr[j + 1]) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
     }
-    print(`Result: ${arr.join(", ")}`, "output_1");
+    print(`Result: ${arr.join(", ")}`, "output-1");
   }
-  print(`Sorted Array: ${arr.join(", ")}`, "output_1");
+  print(`Sorted Array: ${arr.join(", ")}`, "output-1");
   return arr;
 }
 
@@ -60,7 +60,7 @@ function merge_sort(arr, n = null) {
   }
   if (n != arr.length) {
     message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, 'output_2');
+    print(message, "output-2");
     throw new RangeError(message);
   }
 
@@ -75,12 +75,12 @@ function merge_sort(arr, n = null) {
 
     print(
       `Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
-      "output_2"
+      "output-2"
     );
     result = merge(merge_sort(left), merge_sort(right));
   }
 
-  print(`Merged Array: ${result.join(", ")}`, "output_2");
+  print(`Merged Array: ${result.join(", ")}`, "output-2");
   return result;
 }
 

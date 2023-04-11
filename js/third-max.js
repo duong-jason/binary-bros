@@ -34,12 +34,12 @@ function merge_sort(arr, n = null) {
 
     print(
       `Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
-      "output_1"
+      "output-1"
     );
     result = reverse_merge(merge_sort(left), merge_sort(right));
   }
 
-  print(`Merged Array: ${result.join(", ")}`, "output_1");
+  print(`Merged Array: ${result.join(", ")}`, "output-1");
   return result;
 }
 
@@ -65,17 +65,17 @@ function naive_third_max(arr, n) {
   }
   if (n != arr.length) {
     message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, 'output_1');
+    print(message, "output-1");
     throw new RangeError(message);
   } else if (n < 3) {
-    print("Third Max Element: N.A.", "output_1");
+    print("Third Max Element: N.A.", "output-1");
     return null;
   }
 
   const sorted_arr = merge_sort(arr, n);
   const t_max = sorted_arr[2];
 
-  print(`Third Max Element: ${t_max}`, "output_1");
+  print(`Third Max Element: ${t_max}`, "output-1");
   return t_max;
 }
 
@@ -86,15 +86,15 @@ function optimal_third_max(arr, n) {
   }
   if (n != arr.length) {
     message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, 'output_2');
+    print(message, "output-2");
     throw new RangeError(message);
   } else if (n < 3) {
-    print("Third Max Element: N.A.", "output_2");
+    print("Third Max Element: N.A.", "output-2");
     console.log("Third Max Element: N.A.");
     return null;
   }
 
-  let f_max = s_max = t_max = Number.NEGATIVE_INFINITY;
+  let f_max = (s_max = t_max = Number.NEGATIVE_INFINITY);
 
   for (let i = 0; i < n; i++) {
     if (arr[i] >= f_max) {
@@ -108,13 +108,13 @@ function optimal_third_max(arr, n) {
       `${
         i + 1
       }) First Max: ${f_max}, Second Max: ${s_max}, Third Max: ${t_max}`,
-      "output_2"
+      "output-2"
     );
     console.log(
       `${i + 1}) First Max: ${f_max}, Second Max: ${s_max}, Third Max: ${t_max}`
     );
   }
-  print(`Third Max Element: ${t_max}`, "output_2");
+  print(`Third Max Element: ${t_max}`, "output-2");
   console.log(`Third Max Element: ${t_max}`);
   return t_max;
 }
