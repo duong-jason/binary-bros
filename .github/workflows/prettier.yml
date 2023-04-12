@@ -16,4 +16,4 @@ jobs:
       - name: Format with prettier
         run: |
           npm install
-          nnpx prettier --check .
+          npx prettier --check .
