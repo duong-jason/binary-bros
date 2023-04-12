@@ -64,7 +64,7 @@ function naive_third_max(arr, n) {
     n = null;
   }
   if (n != arr.length) {
-    message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
+    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
     print(message, "output-1");
     throw new RangeError(message);
   } else if (n < 3) {
@@ -85,7 +85,7 @@ function optimal_third_max(arr, n) {
     n = null;
   }
   if (n != arr.length) {
-    message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
+    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
     print(message, "output-2");
     throw new RangeError(message);
   } else if (n < 3) {
