@@ -1,6 +1,6 @@
-Array.prototype.sum = function() {
+Array.prototype.sum = function () {
   return this.reduce((a, b) => a + b, 0);
-}
+};
 
 function print(msg, id) {
   if (document.getElementById(id)) {
@@ -29,21 +29,27 @@ function naive_max_sum(arr, n) {
   }
   if (n != arr.length) {
     message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, "output_1");
+    print(message, "output-1");
     throw new RangeError(message);
   }
 
   let [max_sum, max_subarray] = [arr[0], [arr[0]]];
 
-  const combinations = function*(arr) {
+  const combinations = function* (arr) {
     for (let i = 0; i < n; i++) {
       for (let j = i + 1; j <= n; j++) {
-        print(prettify(arr, i, j, "Orange") + " = " + arr.slice(i, j).sum(), "output_1");
+        print(
+          prettify(arr, i, j, "Orange") + " = " + arr.slice(i, j).sum(),
+          "output-1"
+        );
         yield [arr.slice(i, j).sum(), arr.slice(i, j)];
       }
-      print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(", ")}`, "output_1");
+      print(
+        `Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(", ")}`,
+        "output-1"
+      );
     }
-  }
+  };
 
   for (const [curr_sum, sub_arr] of combinations(arr)) {
     if (curr_sum > max_sum) {
@@ -67,24 +73,30 @@ function optimal_max_sum(arr, n) {
   }
   if (n != arr.length) {
     message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, "output_2");
+    print(message, "output-2");
     throw new RangeError(message);
   }
 
   let [max_sum, max_subarray] = [arr[0], [arr[0]]];
   let curr_sum = 0;
 
-  for (let i = j = 0; i < n; i++) {
+  for (let i = (j = 0); i < n; i++) {
     if (curr_sum < 0) {
-        [curr_sum, j] = [0, i];
+      [curr_sum, j] = [0, i];
     }
     if ((curr_sum += arr[i]) > max_sum) {
-        [max_sum, max_subarray] = [curr_sum, arr.slice(j, i + 1)];
+      [max_sum, max_subarray] = [curr_sum, arr.slice(j, i + 1)];
     }
-    print(prettify(arr, j, i + 1, (curr_sum < 0) ? "Tomato" : "MediumSeaGreen"), "output_2");
-    print(`Current Sum = ${curr_sum} and Max Sum = ${max_sum}`, "output_2");
+    print(
+      prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen"),
+      "output-2"
+    );
+    print(`Current Sum = ${curr_sum} and Max Sum = ${max_sum}`, "output-2");
   }
-  print(`Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(", ")}`, "output_2");
+  print(
+    `Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(", ")}`,
+    "output-2"
+  );
   return max_sum;
 }
 
