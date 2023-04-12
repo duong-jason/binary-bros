@@ -9,6 +9,9 @@
   "scripts": {
     "test": "jest --silent --env=jsdom"
   },
+  "prettier": {
+    "bracketSameLine": true
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

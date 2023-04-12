@@ -6,69 +6,87 @@
     <script src="js/max-sum.js"></script>
     <script>
       function preprocess(elements) {
-        const pattern = /^-?\d+(\.\d+)?(,\s-?\d+(\.\d+)?)*$/
+        const pattern = /^-?\d+(\.\d+)?(,\s-?\d+(\.\d+)?)*$/;
         if (pattern.test(elements)) {
-            return elements.split(', ').map(Number)
+          return elements.split(", ").map(Number);
         }
-        alert("Please enter comma-separated numerical values (e.g., 1, -23, 456)")
+        alert(
+          "Please enter comma-separated numerical values (e.g., 1, -23, 45.67)"
+        );
+        // FIXME: TypeError: Cannot read properties of undefined (reading 'length')
+        // Happens when no user input in the 'element' text field
       }
     </script>
   </head>
   <body>
     <h1 class="sortalgo">Find Max Sum</h1>
-      <div class="algos-container">
-        <div class="bubble-container">
-          <div class="title-container">
-            <h2>Naive Max Sum</h2>
+    <div class="algos-container">
+      <div class="bubble-container">
+        <div class="title-container">
+          <h2>Naive Max Sum</h2>
+        </div>
+        <div class="inputs">
+          <div>
+            <label for="size-1">Size:</label><br />
+            <input type="number" name="size-1" id="size-1" />
           </div>
-          <div class="inputs">
-            <div>
-              <label for="size-1">Size:</label><br>
-              <input type="number" name="size-1" id="size-1">
-            </div>
-            <div>
-              <label for="elements">Elements:</label><br>
-              <input name="elements" id="elements-1"><br>
-            </div>
-          </div>
-          <button class="btn" onclick="naive_max_sum(preprocess(document.getElementById('elements-1').value), document.getElementById('size-1').value)">Naive</button>
-          <button class="btn" onclick="document.getElementById('output-1').innerHTML = ''">Clear</button>
-          <div class="output-1" id="output-1"></div>
-          <div class="complexity">
-            Complexity: O(n^2)
+          <div>
+            <label for="elements">Elements:</label><br />
+            <input name="elements" id="elements-1" /><br />
           </div>
         </div>
-        <div class="merge-container">
-          <div class="title-container">
-            <h2>Optimal Max Sum</h2>
+        <button
+          class="btn"
+          onclick="naive_max_sum(preprocess(document.getElementById('elements-1').value), document.getElementById('size-1').value)">
+          Naive
+        </button>
+        <button
+          class="btn"
+          onclick="document.getElementById('output-1').innerHTML = ''">
+          Clear
+        </button>
+        <div class="output-1" id="output-1"></div>
+        <div class="complexity">Complexity: O(n^2)</div>
+      </div>
+      <div class="merge-container">
+        <div class="title-container">
+          <h2>Optimal Max Sum</h2>
+        </div>
+        <div class="inputs">
+          <div>
+            <label for="size-2">Size:</label><br />
+            <input type="number" name="size-2" id="size-2" />
           </div>
-          <div class="inputs">
-            <div>
-              <label for="size-2">Size:</label><br>
-              <input type="number" name="size-2" id="size-2">
-            </div>
-            <div>
-              <label for="elements">Elements:</label><br>
-              <input name="elements" id="elements-2"><br>
-            </div>
-          </div>
-          <button class="btn" onclick="optimal_max_sum(preprocess(document.getElementById('elements-2').value), document.getElementById('size-2').value)">Optimal</button>
-          <button class="btn" onclick="document.getElementById('output-2').innerHTML = ''">Clear</button>
-          <div class="output-2" id="output-2"></div>
-          <div class="complexity">
-            Complexity: O(n)
+          <div>
+            <label for="elements">Elements:</label><br />
+            <input name="elements" id="elements-2" /><br />
           </div>
         </div>
+        <button
+          class="btn"
+          onclick="optimal_max_sum(preprocess(document.getElementById('elements-2').value), document.getElementById('size-2').value)">
+          Optimal
+        </button>
+        <button
+          class="btn"
+          onclick="document.getElementById('output-2').innerHTML = ''">
+          Clear
+        </button>
+        <div class="output-2" id="output-2"></div>
+        <div class="complexity">Complexity: O(n)</div>
       </div>
-      <div class="back-container">
-        <button class="back-btn" onclick="window.location.href='./index.html';">back</button>
-      </div>
-      <div class="credits">
-        <p>
-          By: Maria Fernandez | Brian Fedelin | Jason Duong | Dylan Gunter | Josue
-          Han Yan Tai Liu
-        </p>
-        <p>CPSC 362 Spring 2023</p>
-      </div>
+    </div>
+    <div class="back-container">
+      <button class="back-btn" onclick="window.location.href='./index.html';">
+        back
+      </button>
+    </div>
+    <div class="credits">
+      <p>
+        By: Maria Fernandez | Brian Fedelin | Jason Duong | Dylan Gunter | Josue
+        Han Yan Tai Liu
+      </p>
+      <p>CPSC 362 Spring 2023</p>
+    </div>
   </body>
 </html>
