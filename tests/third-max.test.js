@@ -18,8 +18,8 @@ function runner(func) {
       expect(func([5, 4, 3, 2, 1, 0], 6)).toEqual(3);
     });
 
-    test("Duplicate max values", () => {
-      expect(func([0, 1, 2, 3, 3, 5], 6)).toEqual(3);
+    test("Duplicate values as distinct", () => {
+      expect(func([1, 2, 2, 4], 4)).toEqual(2);
     });
   });
 }

@@ -88,15 +88,16 @@ function optimal_max_sum(arr, n) {
       [max_sum, max_subarray] = [curr_sum, arr.slice(j, i + 1)];
     }
     print(
-      prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen"),
+      prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen") +
+        " = " +
+        curr_sum,
       "output-2"
     );
-    print(`Current Sum = ${curr_sum} and Max Sum = ${max_sum}`, "output-2");
+    print(
+      `Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(", ")}`,
+      "output-2"
+    );
   }
-  print(
-    `Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(", ")}`,
-    "output-2"
-  );
   return max_sum;
 }
 
