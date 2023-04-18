@@ -18,6 +18,8 @@ function prettify(arr, start, end, color) {
   return output;
 }
 
+var i = 0;
+
 function merge_sort(arr, n = null) {
   if (n === null) {
     n = arr.length;
@@ -33,13 +35,13 @@ function merge_sort(arr, n = null) {
     let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
 
     print(
-      `Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
+      `${(i += 1)}) Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
       "output-1"
     );
     result = reverse_merge(merge_sort(left), merge_sort(right));
   }
 
-  print(`Merged Array: ${result.join(", ")}`, "output-1");
+  print(`${(i += 1)}) Merged Array: ${result.join(", ")}`, "output-1");
   return result;
 }
 
@@ -75,7 +77,10 @@ function naive_third_max(arr, n) {
   const sorted_arr = merge_sort(arr, n);
   const t_max = sorted_arr[2];
 
-  print(`Third Max Element: ${t_max}`, "output-1");
+  print(
+    `<br>The final result of the third max element is "${t_max}"`,
+    "output-1"
+  );
   return t_max;
 }
 
@@ -90,7 +95,6 @@ function optimal_third_max(arr, n) {
     throw new RangeError(message);
   } else if (n < 3) {
     print("Third Max Element: N.A.", "output-2");
-    console.log("Third Max Element: N.A.");
     return null;
   }
 
@@ -110,12 +114,11 @@ function optimal_third_max(arr, n) {
       }) First Max: ${f_max}, Second Max: ${s_max}, Third Max: ${t_max}`,
       "output-2"
     );
-    console.log(
-      `${i + 1}) First Max: ${f_max}, Second Max: ${s_max}, Third Max: ${t_max}`
-    );
   }
-  print(`Third Max Element: ${t_max}`, "output-2");
-  console.log(`Third Max Element: ${t_max}`);
+  print(
+    `<br>The final result of the third max element is "${t_max}"`,
+    "output-2"
+  );
   return t_max;
 }
 

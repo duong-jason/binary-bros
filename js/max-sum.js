@@ -39,15 +39,15 @@ function naive_max_sum(arr, n) {
     for (let i = 0; i < n; i++) {
       for (let j = i + 1; j <= n; j++) {
         print(
-          prettify(arr, i, j, "Orange") + " = " + arr.slice(i, j).sum(),
+          `${i + 1}) ` +
+            prettify(arr, i, j, "Orange") +
+            " = " +
+            arr.slice(i, j).sum(),
           "output-1"
         );
         yield [arr.slice(i, j).sum(), arr.slice(i, j)];
       }
-      print(
-        `Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(", ")}`,
-        "output-1"
-      );
+      print("", "output-1");
     }
   };
 
@@ -55,8 +55,17 @@ function naive_max_sum(arr, n) {
     if (curr_sum > max_sum) {
       [max_sum, max_subarray] = [curr_sum, sub_arr];
     }
+    print(
+      `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarray.join(", ")}`,
+      "output-1"
+    );
   }
-
+  print(
+    `The final result of the resulting max sum subarray is "${max_subarray.join(
+      ", "
+    )}"`,
+    "output-1"
+  );
   return max_sum;
 }
 
@@ -88,16 +97,23 @@ function optimal_max_sum(arr, n) {
       [max_sum, max_subarray] = [curr_sum, arr.slice(j, i + 1)];
     }
     print(
-      prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen") +
+      `${i + 1}) ` +
+        prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen") +
         " = " +
         curr_sum,
       "output-2"
     );
     print(
-      `Max Sum = ${max_sum} and Max Subarray = ${max_subarray.join(", ")}`,
+      `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarray.join(", ")}`,
       "output-2"
     );
   }
+  print(
+    `<br>The final result of the resulting max sum subarray is "${max_subarray.join(
+      ", "
+    )}"`,
+    "output-2"
+  );
   return max_sum;
 }
 

@@ -6,6 +6,7 @@
     <script src="js/max-sum.js"></script>
     <script>
       function preprocess(elements) {
+        // Language accepts any comma-spaced sequence of signed decimal numbers
         const pattern = /^-?\d+(\.\d+)?(,\s-?\d+(\.\d+)?)*$/;
         if (pattern.test(elements)) {
           return elements.split(", ").map(Number);

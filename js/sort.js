@@ -48,8 +48,22 @@ function bubble_sort(arr, n) {
     }
     print(`Result: ${arr.join(", ")}`, "output-1");
   }
-  print(`Sorted Array: ${arr.join(", ")}`, "output-1");
+  print(
+    `<br>The final result of the sorted array is "${arr.join(", ")}"`,
+    "output-1"
+  );
   return arr;
+}
+
+var i = 0;
+
+function merge_sort_wrapper(arr, n = null) {
+  let result = merge_sort(arr, n);
+  print(
+    `<br>The final result of the sorted array is "${result.join(", ")}"`,
+    "output-2"
+  );
+  return result;
 }
 
 function merge_sort(arr, n = null) {
@@ -74,13 +88,13 @@ function merge_sort(arr, n = null) {
     let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
 
     print(
-      `Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
+      `${(i += 1)}) Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
       "output-2"
     );
     result = merge(merge_sort(left), merge_sort(right));
   }
 
-  print(`Merged Array: ${result.join(", ")}`, "output-2");
+  print(`${(i += 1)}) Merged Array: ${result.join(", ")}`, "output-2");
   return result;
 }
 
