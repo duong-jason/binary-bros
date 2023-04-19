@@ -60,7 +60,7 @@ function naive_max_sum(arr, n) {
       "output-1"
     );
   }
-  print(`Max sum subarray: ${max_subarray}`, "output-1");
+  print(`Max sum subarray: ${max_subarray.join(", ")}`, "output-1");
   print(`Max sum: ${max_sum}`, "output-1");
   return max_sum;
 }
@@ -104,7 +104,7 @@ function optimal_max_sum(arr, n) {
       "output-2"
     );
   }
-  print(`<br>Max sum subarray: ${max_subarray}`, "output-2");
+  print(`<br>Max sum subarray: ${max_subarray.join(", ")}`, "output-2");
   print(`Max sum: ${max_sum}`, "output-2");
   return max_sum;
 }

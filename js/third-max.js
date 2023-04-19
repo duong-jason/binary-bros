@@ -77,10 +77,7 @@ function naive_third_max(arr, n) {
   const sorted_arr = merge_sort(arr, n);
   const t_max = sorted_arr[2];
 
-  print(
-    `<br>Third max element: ${t_max}`,
-    "output-1"
-  );
+  print(`<br>Third max element: ${t_max}`, "output-1");
   return t_max;
 }
 
@@ -109,16 +106,13 @@ function optimal_third_max(arr, n) {
       t_max = arr[i];
     }
     print(
-      `${
-        i + 1
-      }) First Max: ${f_max}, Second Max: ${s_max}, Third Max: ${t_max}`,
+      `${i + 1}) First Max: ${f_max == Number.NEGATIVE_INFINITY ? "?" : f_max},
+      Second Max: ${s_max == Number.NEGATIVE_INFINITY ? "?" : s_max},
+      Third Max: ${t_max == Number.NEGATIVE_INFINITY ? "?" : t_max}`,
       "output-2"
     );
   }
-  print(
-    `<br>Third max element: ${t_max}`,
-    "output-2"
-  );
+  print(`<br>Third max element: ${t_max}`, "output-2");
   return t_max;
 }
 
