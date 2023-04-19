@@ -49,7 +49,7 @@ function bubble_sort(arr, n) {
     print(`Result: ${arr.join(", ")}`, "output-1");
   }
   print(
-    `<br>The final result of the sorted array is "${arr.join(", ")}"`,
+    `<br>Sorted Array: ${arr.join(", ")}`,
     "output-1"
   );
   return arr;
@@ -60,7 +60,7 @@ var i = 0;
 function merge_sort_wrapper(arr, n = null) {
   let result = merge_sort(arr, n);
   print(
-    `<br>The final result of the sorted array is "${result.join(", ")}"`,
+    `<br>Sorted Array: ${result.join(", ")}`,
     "output-2"
   );
   return result;

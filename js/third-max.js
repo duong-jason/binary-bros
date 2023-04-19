@@ -78,7 +78,7 @@ function naive_third_max(arr, n) {
   const t_max = sorted_arr[2];
 
   print(
-    `<br>The final result of the third max element is "${t_max}"`,
+    `<br>Third max element: ${t_max}`,
     "output-1"
   );
   return t_max;
@@ -116,7 +116,7 @@ function optimal_third_max(arr, n) {
     );
   }
   print(
-    `<br>The final result of the third max element is "${t_max}"`,
+    `<br>Third max element: ${t_max}`,
     "output-2"
   );
   return t_max;
