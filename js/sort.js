@@ -55,6 +55,7 @@ function bubble_sort(arr, n) {
 var i = 0;
 
 function merge_sort_wrapper(arr, n = null) {
+  i = 0;
   let result = merge_sort(arr, n);
   print(`<br>Sorted Array: ${result.join(", ")}`, "output-2");
   return result;

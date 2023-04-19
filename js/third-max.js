@@ -74,6 +74,7 @@ function naive_third_max(arr, n) {
     return null;
   }
 
+  i = 0;
   const sorted_arr = merge_sort(arr, n);
   const t_max = sorted_arr[2];
 
