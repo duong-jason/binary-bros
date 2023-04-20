@@ -4,20 +4,6 @@ function print(msg, id) {
   }
 }
 
-function prettify(arr, start, end, color) {
-  var output = "";
-  for (let i = 0; i < start; i++) {
-    output += arr[i] + ", ";
-  }
-  output += `<span style='color: ${color};'> ${arr
-    .slice(start, end)
-    .join(", ")}</span>`;
-  for (let i = end; i < arr.length; i++) {
-    output += ", " + arr[i];
-  }
-  return output;
-}
-
 var i = 0;
 
 function merge_sort(arr, n = null) {
@@ -33,10 +19,7 @@ function merge_sort(arr, n = null) {
   const mid = Math.floor(n / 2);
   let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
 
-  print(
-    `${(i += 1)}) Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
-    "output-1"
-  );
+  print(`${(i += 1)}) Split Array: ${arr.join(", ")}`, "output-1");
 
   return reverse_merge(merge_sort(left), merge_sort(right));
 }

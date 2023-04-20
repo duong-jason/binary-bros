@@ -8,20 +8,6 @@ function print(msg, id) {
   }
 }
 
-function prettify(arr, start, end, color) {
-  var output = "";
-  for (let i = 0; i < start; i++) {
-    output += arr[i] + ", ";
-  }
-  output += `<span style='color: ${color};'> ${arr
-    .slice(start, end)
-    .join(", ")}</span>`;
-  for (let i = end; i < arr.length; i++) {
-    output += ", " + arr[i];
-  }
-  return output;
-}
-
 // O(n^2)
 function naive_max_sum(arr, n) {
   // If no input or incorrect elements (regardless of size) -> Pop-up error
@@ -41,10 +27,7 @@ function naive_max_sum(arr, n) {
     for (let i = 0; i < n; i++) {
       for (let j = i + 1; j <= n; j++) {
         print(
-          `${i + 1}) ` +
-            prettify(arr, i, j, "Orange") +
-            " = " +
-            arr.slice(i, j).sum(),
+          `${i + 1}) ` + arr.join(", ") + " = " + arr.slice(i, j).sum(),
           "output-1"
         );
         yield [arr.slice(i, j).sum(), arr.slice(i, j)];
@@ -91,13 +74,7 @@ function optimal_max_sum(arr, n) {
     if ((curr_sum += arr[i]) > max_sum) {
       [max_sum, max_subarr] = [curr_sum, arr.slice(j, i + 1)];
     }
-    print(
-      `${i + 1}) ` +
-        prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen") +
-        " = " +
-        curr_sum,
-      "output-2"
-    );
+    print(`${i + 1}) ` + arr.join(", ") + " = " + curr_sum, "output-2");
     print(
       `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarr.join(", ")}`,
       "output-2"
