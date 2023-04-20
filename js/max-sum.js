@@ -21,6 +21,7 @@ function naive_max_sum(arr, n) {
     throw new RangeError(message);
   }
 
+  const start_time = performance.now()
   let [max_sum, max_subarr] = [arr[0], [arr[0]]];
 
   const combinations = function* (arr) {
@@ -47,6 +48,7 @@ function naive_max_sum(arr, n) {
   }
   print(`Max sum subarray: ${max_subarr.join(", ")}`, "output-1");
   print(`Max sum: ${max_sum}`, "output-1");
+  print(`Execution Time: ${(performance.now() - start_time).toFixed(6)}`, "output-1")
   return max_sum;
 }
 
@@ -64,6 +66,7 @@ function optimal_max_sum(arr, n) {
     throw new RangeError(message);
   }
 
+  const start_time = performance.now()
   let [max_sum, max_subarr] = [arr[0], [arr[0]]];
   let curr_sum = 0;
 
@@ -82,6 +85,7 @@ function optimal_max_sum(arr, n) {
   }
   print(`<br>Max sum subarray: ${max_subarr.join(", ")}`, "output-2");
   print(`Max sum: ${max_sum}`, "output-2");
+  print(`Execution Time: ${(performance.now() - start_time).toFixed(6)}`, "output-2")
   return max_sum;
 }
 

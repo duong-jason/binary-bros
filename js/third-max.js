@@ -50,7 +50,11 @@ function naive_third_max(arr, n) {
     const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
     print(message, "output-1");
     throw new RangeError(message);
-  } else if (n < 3) {
+  }
+
+  const start_time = performance.now()
+
+  if (n < 3) {
     print("Third Max Element: N.A.", "output-1");
     return null;
   }
@@ -60,6 +64,7 @@ function naive_third_max(arr, n) {
   const t_max = sorted_arr[2];
 
   print(`<br>Third max element: ${t_max}`, "output-1");
+  print(`Execution Time: ${(performance.now() - start_time).toFixed(6)}`, "output-1")
   return t_max;
 }
 
@@ -72,7 +77,11 @@ function optimal_third_max(arr, n) {
     const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
     print(message, "output-2");
     throw new RangeError(message);
-  } else if (n < 3) {
+  }
+
+  const start_time = performance.now()
+
+  if (n < 3) {
     print("Third Max Element: N.A.", "output-2");
     return null;
   }
@@ -95,6 +104,7 @@ function optimal_third_max(arr, n) {
     );
   }
   print(`<br>Third max element: ${t_max}`, "output-2");
+  print(`Execution Time: ${(performance.now() - start_time).toFixed(6)}`, "output-2")
   return t_max;
 }
 
