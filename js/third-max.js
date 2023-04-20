@@ -25,24 +25,20 @@ function merge_sort(arr, n = null) {
     n = arr.length;
   }
 
-  let result = null;
-
   // either one element from split or input array with less than 1 element
   if (n <= 1) {
-    result = arr;
-  } else {
-    const mid = Math.floor(n / 2);
-    let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
-
-    print(
-      `${(i += 1)}) Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
-      "output-1"
-    );
-    result = reverse_merge(merge_sort(left), merge_sort(right));
+    return arr;
   }
 
-  print(`${(i += 1)}) Merged Array: ${result.join(", ")}`, "output-1");
-  return result;
+  const mid = Math.floor(n / 2);
+  let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
+
+  print(
+    `${(i += 1)}) Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
+    "output-1"
+  );
+
+  return reverse_merge(merge_sort(left), merge_sort(right));
 }
 
 function reverse_merge(a, b) {
@@ -57,7 +53,9 @@ function reverse_merge(a, b) {
   }
 
   // either sorted array `a` or `b` must be empty and the other with at least one element
-  return [...c, ...a.slice(p, n), ...b.slice(q, m)];
+  let result = [...c, ...a.slice(p, n), ...b.slice(q, m)];
+  print(`${(i += 1)}) Merged Array: ${result.join(", ")}`, "output-1");
+  return result;
 }
 
 // O(nlogn)

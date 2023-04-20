@@ -29,7 +29,12 @@
         <div class="inputs">
           <div>
             <label for="size">Size:</label><br />
-            <input type="number" name="size" id="size" />
+            <input
+              type="number"
+              min="0"
+              oninput="validity.valid||(value='');"
+              name="size"
+              id="size" />
           </div>
           <div>
             <label for="elements">Elements:</label><br />
@@ -56,7 +61,12 @@
         <div class="inputs">
           <div>
             <label for="size-2">Size:</label><br />
-            <input type="number" name="size-2" id="size-2" />
+            <input
+              type="number"
+              min="0"
+              oninput="validity.valid||(value='');"
+              name="size-2"
+              id="size-2" />
           </div>
           <div>
             <label for="elements-2">Elements:</label><br />
