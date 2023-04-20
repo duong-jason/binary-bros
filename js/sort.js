@@ -16,7 +16,7 @@ function bubble_sort(arr, n) {
     throw new RangeError(message);
   }
 
-  const start_time = performance.now()
+  const start_time = performance.now();
 
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
@@ -28,7 +28,10 @@ function bubble_sort(arr, n) {
     print(`${i + 1}) ${arr.join(", ")}<br>`, "output-1");
   }
   print(`Sorted Array: ${arr.join(", ")}`, "output-1");
-  print(`Execution Time: ${(performance.now() - start_time).toFixed(6)}`, "output-1")
+  print(
+    `Execution Time: ${(performance.now() - start_time).toFixed(6)}`,
+    "output-1"
+  );
   return arr;
 }
 
@@ -36,10 +39,13 @@ var i = 0;
 
 function merge_sort_wrapper(arr, n = null) {
   i = 0;
-  const start_time = performance.now()
+  const start_time = performance.now();
   let result = merge_sort(arr, n);
   print(`<br>Sorted Array: ${result.join(", ")}`, "output-2");
-  print(`Execution Time: ${(performance.now() - start_time).toFixed(6)}`, "output-2")
+  print(
+    `Execution Time: ${(performance.now() - start_time).toFixed(6)}`,
+    "output-2"
+  );
   return result;
 }
 
