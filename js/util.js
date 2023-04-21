@@ -10,7 +10,7 @@ global.prettify = function (arr, start, end, color) {
   for (let i = 0; i < start; i++) {
     output += arr[i] + ", ";
   }
-  output += `<span style='color: ${color};'> ${arr
+  output += `<span style='color: ${color};'>${arr
     .slice(start, end)
     .join(", ")}</span>`;
   for (let i = end; i < arr.length; i++) {
@@ -34,7 +34,20 @@ global.run = function (algo, arr, n, tag) {
   try {
     // Start the clock once user presses the run button
     const START_TIME = performance.now();
-    arr = preprocess(arr);
+
+    if (arr == ":3") {
+      function range(size, min, max) {
+        r = [];
+        for (let i = 0; i < size; i++) {
+          r.push(Math.floor(Math.random() * (max - min + 1)) + min);
+        }
+        return r;
+      }
+      arr = range(10, -8, 7);
+      n = arr.length;
+    } else {
+      arr = preprocess(arr);
+    }
 
     if (n != arr.length) {
       throw new RangeError();

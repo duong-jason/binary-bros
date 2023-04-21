@@ -1,48 +1,5 @@
-const { print, prettify } = require("./util.js");
-
-var global_counter = 0;
-
-function merge_sort(arr, n = null) {
-  if (n === null) {
-    n = arr.length;
-  }
-
-  // either one element from split or input array with less than 1 element
-  if (n <= 1) {
-    return arr;
-  }
-
-  const mid = Math.floor(n / 2);
-  let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
-
-  print(
-    `${(global_counter += 1)}) Split Array: ${prettify(
-      arr,
-      mid - 1,
-      mid + 1,
-      "Orange"
-    )}`
-  );
-
-  return reverse_merge(merge_sort(left), merge_sort(right));
-}
-
-function reverse_merge(a, b) {
-  const n = a.length,
-    m = b.length;
-  let c = [],
-    p = 0,
-    q = 0;
-
-  while (p < n && q < m) {
-    c.push(a[p] > b[q] ? a[p++] : b[q++]);
-  }
-
-  // either sorted array `a` or `b` must be empty and the other with at least one element
-  let result = [...c, ...a.slice(p, n), ...b.slice(q, m)];
-  print(`${(global_counter += 1)}) Merged Array: ${result.join(", ")}`);
-  return result;
-}
+const { print } = require("./util.js");
+const { merge_sort } = require("./sort.js");
 
 // O(nlogn)
 global.naive_third_max = function (arr, n) {
@@ -51,9 +8,9 @@ global.naive_third_max = function (arr, n) {
     return null;
   }
 
-  global_counter = 0;
+  // FIXME: should always start at iteration 1 (reset iteration in every run)
   const sorted_arr = merge_sort(arr, n);
-  const t_max = sorted_arr[2];
+  const t_max = sorted_arr[sorted_arr.length - 3];
 
   print(`\nThird max element: ${t_max}`);
   return t_max;
@@ -77,9 +34,11 @@ global.optimal_third_max = function (arr, n) {
       t_max = arr[i];
     }
     print(
-      `${i + 1}) First Max: ${f_max == Number.NEGATIVE_INFINITY ? "?" : f_max},
-      Second Max: ${s_max == Number.NEGATIVE_INFINITY ? "?" : s_max},
-      Third Max: ${t_max == Number.NEGATIVE_INFINITY ? "?" : t_max}`
+      `${i + 1}) First Max: ${
+        f_max == Number.NEGATIVE_INFINITY ? "?" : f_max
+      }, Second Max: ${
+        s_max == Number.NEGATIVE_INFINITY ? "?" : s_max
+      }, Third Max: ${t_max == Number.NEGATIVE_INFINITY ? "?" : t_max}`
     );
   }
   print(`\nThird max element: ${t_max}`);

@@ -24,7 +24,7 @@ global.bubble_sort = function (arr, n) {
   return arr;
 };
 
-global.merge_sort_wrapper = function (arr, n = null) {
+global.merge_sort_wrapper = function (arr, n) {
   global_counter = 0;
   print(`\nSorted Array: ${merge_sort(arr, n).join(", ")}`);
 };
