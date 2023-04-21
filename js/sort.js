@@ -4,9 +4,21 @@ function print(msg, id) {
   }
 }
 
+function prettify(arr, start, end, color) {
+  var output = "";
+  for (let i = 0; i < start; i++) {
+    output += arr[i] + ", ";
+  }
+  output += `<span style='color: ${color};'> ${arr
+    .slice(start, end)
+    .join(", ")}</span>`;
+  for (let i = end; i < arr.length; i++) {
+    output += ", " + arr[i];
+  }
+  return output;
+}
+
 function bubble_sort(arr, n) {
-  // FIXME: Expected size=, Got size=1
-  // Happens when correct input to 'element' field but 'size' field wasn't specified
   if (n === "") {
     n = null;
   }
@@ -16,11 +28,20 @@ function bubble_sort(arr, n) {
     throw new RangeError(message);
   }
 
-  const start_time = performance.now();
+  const START_TIME = performance.now();
 
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
-      print(`${i + 1}) ` + arr.join(", "), "output-1");
+      print(
+        `${i + 1}) ` +
+          prettify(
+            arr,
+            j,
+            j + 2,
+            arr[j] > arr[j + 1] ? "Tomato" : "MediumSeaGreen"
+          ),
+        "output-1"
+      );
       if (arr[j] > arr[j + 1]) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
@@ -29,7 +50,7 @@ function bubble_sort(arr, n) {
   }
   print(`Sorted Array: ${arr.join(", ")}`, "output-1");
   print(
-    `Execution Time: ${(performance.now() - start_time).toFixed(6)}`,
+    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
     "output-1"
   );
   return arr;
@@ -39,11 +60,11 @@ var i = 0;
 
 function merge_sort_wrapper(arr, n = null) {
   i = 0;
-  const start_time = performance.now();
+  const START_TIME = performance.now();
   let result = merge_sort(arr, n);
   print(`<br>Sorted Array: ${result.join(", ")}`, "output-2");
   print(
-    `Execution Time: ${(performance.now() - start_time).toFixed(6)}`,
+    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
     "output-2"
   );
   return result;
@@ -69,7 +90,10 @@ function merge_sort(arr, n = null) {
   const mid = Math.floor(n / 2);
   let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
 
-  print(`${(i += 1)}) Split Array: ${arr.join(", ")}`, "output-2");
+  print(
+    `${(i += 1)}) Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
+    "output-2"
+  );
 
   return merge(merge_sort(left), merge_sort(right));
 }

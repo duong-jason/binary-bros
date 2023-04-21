@@ -4,6 +4,20 @@ function print(msg, id) {
   }
 }
 
+function prettify(arr, start, end, color) {
+  var output = "";
+  for (let i = 0; i < start; i++) {
+    output += arr[i] + ", ";
+  }
+  output += `<span style='color: ${color};'> ${arr
+    .slice(start, end)
+    .join(", ")}</span>`;
+  for (let i = end; i < arr.length; i++) {
+    output += ", " + arr[i];
+  }
+  return output;
+}
+
 var i = 0;
 
 function merge_sort(arr, n = null) {
@@ -19,7 +33,10 @@ function merge_sort(arr, n = null) {
   const mid = Math.floor(n / 2);
   let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
 
-  print(`${(i += 1)}) Split Array: ${arr.join(", ")}`, "output-1");
+  print(
+    `${(i += 1)}) Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
+    "output-1"
+  );
 
   return reverse_merge(merge_sort(left), merge_sort(right));
 }
@@ -52,20 +69,19 @@ function naive_third_max(arr, n) {
     throw new RangeError(message);
   }
 
-  const start_time = performance.now();
-
   if (n < 3) {
     print("Third Max Element: N.A.", "output-1");
     return null;
   }
 
   i = 0;
+  const START_TIME = performance.now()
   const sorted_arr = merge_sort(arr, n);
   const t_max = sorted_arr[2];
 
   print(`<br>Third max element: ${t_max}`, "output-1");
   print(
-    `Execution Time: ${(performance.now() - start_time).toFixed(6)}`,
+    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
     "output-1"
   );
   return t_max;
@@ -82,7 +98,7 @@ function optimal_third_max(arr, n) {
     throw new RangeError(message);
   }
 
-  const start_time = performance.now();
+  const START_TIME = performance.now();
 
   if (n < 3) {
     print("Third Max Element: N.A.", "output-2");
@@ -108,7 +124,7 @@ function optimal_third_max(arr, n) {
   }
   print(`<br>Third max element: ${t_max}`, "output-2");
   print(
-    `Execution Time: ${(performance.now() - start_time).toFixed(6)}`,
+    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
     "output-2"
   );
   return t_max;
