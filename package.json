@@ -1,8 +1,8 @@
 {
   "name": "binary-bros",
   "version": "1.0.0",
-  "description": "## Installation",
-  "main": "sort.js",
+  "description": "A Web-Based Algorithm Visualizer",
+  "main": "bundle.js",
   "directories": {
     "test": "tests"
   },

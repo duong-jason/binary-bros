@@ -17,12 +17,11 @@ global.naive_max_sum = function (arr, n) {
           `${i + 1}) ` +
             prettify(arr, i, j, "Orange") +
             " = " +
-            arr.slice(i, j).sum(),
-          "output-1"
+            arr.slice(i, j).sum()
         );
         yield [arr.slice(i, j).sum(), arr.slice(i, j)];
       }
-      print("", "output-1");
+      print();
     }
   };
 
@@ -31,12 +30,11 @@ global.naive_max_sum = function (arr, n) {
       [max_sum, max_subarr] = [curr_sum, sub_arr];
     }
     print(
-      `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarr.join(", ")}`,
-      "output-1"
+      `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarr.join(", ")}`
     );
   }
-  print(`Max sum subarray: ${max_subarr.join(", ")}`, "output-1");
-  print(`Max sum: ${max_sum}`, "output-1");
+  print(`Max sum subarray: ${max_subarr.join(", ")}`);
+  print(`Max sum: ${max_sum}`);
   return max_sum;
 };
 
@@ -45,15 +43,6 @@ global.naive_max_sum = function (arr, n) {
 // negative subarrays will always reduce the current maximum sum
 // NOTE: the algorithm will choose the full array, [1, 2, -3, 4], instead of [4]
 global.optimal_max_sum = function (arr, n) {
-  if (n === "") {
-    n = null;
-  }
-  if (n != arr.length) {
-    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, "output-2");
-    throw new RangeError(message);
-  }
-
   let [max_sum, max_subarr] = [arr[0], [arr[0]]];
   let curr_sum = 0;
 
@@ -68,16 +57,14 @@ global.optimal_max_sum = function (arr, n) {
       `${i + 1}) ` +
         prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen") +
         " = " +
-        curr_sum,
-      "output-2"
+        curr_sum
     );
     print(
-      `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarr.join(", ")}`,
-      "output-2"
+      `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarr.join(", ")}`
     );
   }
-  print(`<br>Max sum subarray: ${max_subarr.join(", ")}`, "output-2");
-  print(`Max sum: ${max_sum}`, "output-2");
+  print(`\nMax sum subarray: ${max_subarr.join(", ")}`);
+  print(`Max sum: ${max_sum}`);
   return max_sum;
 };
 
@@ -91,6 +78,8 @@ module.exports = {
 (function (global){(function (){
 const { print, prettify } = require("./util.js");
 
+var global_counter = 0;
+
 global.bubble_sort = function (arr, n) {
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
@@ -101,26 +90,21 @@ global.bubble_sort = function (arr, n) {
             j,
             j + 2,
             arr[j] > arr[j + 1] ? "Tomato" : "MediumSeaGreen"
-          ),
-        "output-1"
+          )
       );
       if (arr[j] > arr[j + 1]) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
     }
-    print(`${i + 1}) ${arr.join(", ")}<br>`, "output-1");
+    print(`${i + 1}) ${arr.join(", ")}\n`);
   }
-  print(`Sorted Array: ${arr.join(", ")}`, "output-1");
+  print(`Sorted Array: ${arr.join(", ")}`);
   return arr;
 };
 
-var i = 0;
-
 global.merge_sort_wrapper = function (arr, n = null) {
-  i = 0;
-  let result = merge_sort(arr, n);
-  print(`<br>Sorted Array: ${result.join(", ")}`, "output-2");
-  return result;
+  global_counter = 0;
+  print(`\nSorted Array: ${merge_sort(arr, n).join(", ")}`);
 };
 
 function merge_sort(arr, n = null) {
@@ -137,8 +121,12 @@ function merge_sort(arr, n = null) {
   let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
 
   print(
-    `${(i += 1)}) Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
-    "output-2"
+    `${(global_counter += 1)}) Split Array: ${prettify(
+      arr,
+      mid - 1,
+      mid + 1,
+      "Orange"
+    )}`
   );
 
   return merge(merge_sort(left), merge_sort(right));
@@ -157,7 +145,7 @@ function merge(a, b) {
 
   // either sorted array `a` or `b` must be empty and the other with at least one element
   let result = [...c, ...a.slice(p, n), ...b.slice(q, m)];
-  print(`${(i += 1)}) Merged Array: ${result.join(", ")}`, "output-2");
+  print(`${(global_counter += 1)}) Merged Array: ${result.join(", ")}`);
   return result;
 }
 
@@ -171,7 +159,7 @@ module.exports = {
 (function (global){(function (){
 const { print, prettify } = require("./util.js");
 
-var i = 0;
+var global_counter = 0;
 
 function merge_sort(arr, n = null) {
   if (n === null) {
@@ -187,8 +175,12 @@ function merge_sort(arr, n = null) {
   let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
 
   print(
-    `${(i += 1)}) Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
-    "output-1"
+    `${(global_counter += 1)}) Split Array: ${prettify(
+      arr,
+      mid - 1,
+      mid + 1,
+      "Orange"
+    )}`
   );
 
   return reverse_merge(merge_sort(left), merge_sort(right));
@@ -207,29 +199,29 @@ function reverse_merge(a, b) {
 
   // either sorted array `a` or `b` must be empty and the other with at least one element
   let result = [...c, ...a.slice(p, n), ...b.slice(q, m)];
-  print(`${(i += 1)}) Merged Array: ${result.join(", ")}`, "output-1");
+  print(`${(global_counter += 1)}) Merged Array: ${result.join(", ")}`);
   return result;
 }
 
 // O(nlogn)
 global.naive_third_max = function (arr, n) {
   if (n < 3) {
-    print("Third Max Element: N.A.", "output-1");
+    print("Third Max Element: N.A.");
     return null;
   }
 
-  i = 0;
+  global_counter = 0;
   const sorted_arr = merge_sort(arr, n);
   const t_max = sorted_arr[2];
 
-  print(`<br>Third max element: ${t_max}`, "output-1");
+  print(`\nThird max element: ${t_max}`);
   return t_max;
 };
 
 // O(n)
 global.optimal_third_max = function (arr, n) {
   if (n < 3) {
-    print("Third Max Element: N.A.", "output-2");
+    print("Third Max Element: N.A.");
     return null;
   }
 
@@ -246,11 +238,10 @@ global.optimal_third_max = function (arr, n) {
     print(
       `${i + 1}) First Max: ${f_max == Number.NEGATIVE_INFINITY ? "?" : f_max},
       Second Max: ${s_max == Number.NEGATIVE_INFINITY ? "?" : s_max},
-      Third Max: ${t_max == Number.NEGATIVE_INFINITY ? "?" : t_max}`,
-      "output-2"
+      Third Max: ${t_max == Number.NEGATIVE_INFINITY ? "?" : t_max}`
     );
   }
-  print(`<br>Third max element: ${t_max}`, "output-2");
+  print(`\nThird max element: ${t_max}`);
   return t_max;
 };
 
@@ -262,9 +253,10 @@ module.exports = {
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./util.js":4}],4:[function(require,module,exports){
 (function (global){(function (){
-global.print = function (msg, id) {
-  if (document.getElementById(id)) {
-    document.getElementById(id).innerHTML += msg + "<br>";
+global.print = function (message = "") {
+  if (document.getElementById(global_tag)) {
+    document.getElementById(global_tag).innerHTML +=
+      message.replace("\n", "<br>") + "<br>";
   }
 };
 
@@ -285,39 +277,40 @@ global.prettify = function (arr, start, end, color) {
 function preprocess(elements) {
   // Language accepts any comma-spaced sequence of signed decimal numbers
   const pattern = /^-?\d+(\.\d+)?(,\s-?\d+(\.\d+)?)*$/;
-  if (pattern.test(elements)) {
-    return elements.split(", ").map(Number);
+  if (!pattern.test(elements)) {
+    throw new TypeError();
   }
-  alert("Please enter comma-separated numerical values (e.g., 1, -23, 45.67)");
-  // FIXME: TypeError: Cannot read properties of undefined (reading 'length')
-  // Happens when no user input in the 'element' text field
+  return elements.split(", ").map(Number);
 }
 
-global.run = function (alg, arr, n, tag) {
-  const START_TIME = performance.now();
+var global_tag;
 
-  arr = preprocess(arr);
+global.run = function (algo, arr, n, tag) {
+  try {
+    // Start the clock once user presses the run button
+    const START_TIME = performance.now();
+    arr = preprocess(arr);
 
-  // If no input or incorrect elements (regardless of size) -> Pop-up error
-  // If no input for size and correct input elements -> size=N.A.
-  if (n === "") {
-    n = null;
+    if (n != arr.length) {
+      throw new RangeError();
+    }
+
+    global_tag = tag;
+    algo(arr, n);
+
+    // Stop the clock once the algorithm finishes execution
+    const END_TIME = performance.now();
+    print(`Execution Time: ${(END_TIME - START_TIME).toFixed(6)} ms`, tag);
+  } catch (e) {
+    if (e instanceof TypeError) {
+      alert("Please enter comma-spaced numerical values (e.g., 1, -23, 45.67)");
+    } else if (e instanceof RangeError) {
+      alert(`Expected Size=${n !== "" ? n : "N.A."}, Got Size=${arr.length}`);
+    }
   }
-  if (n != arr.length) {
-    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, tag);
-    throw new RangeError(message);
-  }
-
-  alg(arr, n);
-
-  print(
-    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
-    tag
-  );
 };
 
-module.exports = { print, prettify, preprocess, run };
+module.exports = { print, prettify };
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}]},{},[1,2,3]);

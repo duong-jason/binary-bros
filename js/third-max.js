@@ -1,6 +1,6 @@
 const { print, prettify } = require("./util.js");
 
-var i = 0;
+var global_counter = 0;
 
 function merge_sort(arr, n = null) {
   if (n === null) {
@@ -16,8 +16,12 @@ function merge_sort(arr, n = null) {
   let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
 
   print(
-    `${(i += 1)}) Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
-    "output-1"
+    `${(global_counter += 1)}) Split Array: ${prettify(
+      arr,
+      mid - 1,
+      mid + 1,
+      "Orange"
+    )}`
   );
 
   return reverse_merge(merge_sort(left), merge_sort(right));
@@ -36,29 +40,29 @@ function reverse_merge(a, b) {
 
   // either sorted array `a` or `b` must be empty and the other with at least one element
   let result = [...c, ...a.slice(p, n), ...b.slice(q, m)];
-  print(`${(i += 1)}) Merged Array: ${result.join(", ")}`, "output-1");
+  print(`${(global_counter += 1)}) Merged Array: ${result.join(", ")}`);
   return result;
 }
 
 // O(nlogn)
 global.naive_third_max = function (arr, n) {
   if (n < 3) {
-    print("Third Max Element: N.A.", "output-1");
+    print("Third Max Element: N.A.");
     return null;
   }
 
-  i = 0;
+  global_counter = 0;
   const sorted_arr = merge_sort(arr, n);
   const t_max = sorted_arr[2];
 
-  print(`<br>Third max element: ${t_max}`, "output-1");
+  print(`\nThird max element: ${t_max}`);
   return t_max;
 };
 
 // O(n)
 global.optimal_third_max = function (arr, n) {
   if (n < 3) {
-    print("Third Max Element: N.A.", "output-2");
+    print("Third Max Element: N.A.");
     return null;
   }
 
@@ -75,11 +79,10 @@ global.optimal_third_max = function (arr, n) {
     print(
       `${i + 1}) First Max: ${f_max == Number.NEGATIVE_INFINITY ? "?" : f_max},
       Second Max: ${s_max == Number.NEGATIVE_INFINITY ? "?" : s_max},
-      Third Max: ${t_max == Number.NEGATIVE_INFINITY ? "?" : t_max}`,
-      "output-2"
+      Third Max: ${t_max == Number.NEGATIVE_INFINITY ? "?" : t_max}`
     );
   }
-  print(`<br>Third max element: ${t_max}`, "output-2");
+  print(`\nThird max element: ${t_max}`);
   return t_max;
 };
 

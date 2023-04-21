@@ -15,12 +15,11 @@ global.naive_max_sum = function (arr, n) {
           `${i + 1}) ` +
             prettify(arr, i, j, "Orange") +
             " = " +
-            arr.slice(i, j).sum(),
-          "output-1"
+            arr.slice(i, j).sum()
         );
         yield [arr.slice(i, j).sum(), arr.slice(i, j)];
       }
-      print("", "output-1");
+      print();
     }
   };
 
@@ -29,12 +28,11 @@ global.naive_max_sum = function (arr, n) {
       [max_sum, max_subarr] = [curr_sum, sub_arr];
     }
     print(
-      `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarr.join(", ")}`,
-      "output-1"
+      `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarr.join(", ")}`
     );
   }
-  print(`Max sum subarray: ${max_subarr.join(", ")}`, "output-1");
-  print(`Max sum: ${max_sum}`, "output-1");
+  print(`Max sum subarray: ${max_subarr.join(", ")}`);
+  print(`Max sum: ${max_sum}`);
   return max_sum;
 };
 
@@ -43,15 +41,6 @@ global.naive_max_sum = function (arr, n) {
 // negative subarrays will always reduce the current maximum sum
 // NOTE: the algorithm will choose the full array, [1, 2, -3, 4], instead of [4]
 global.optimal_max_sum = function (arr, n) {
-  if (n === "") {
-    n = null;
-  }
-  if (n != arr.length) {
-    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, "output-2");
-    throw new RangeError(message);
-  }
-
   let [max_sum, max_subarr] = [arr[0], [arr[0]]];
   let curr_sum = 0;
 
@@ -66,16 +55,14 @@ global.optimal_max_sum = function (arr, n) {
       `${i + 1}) ` +
         prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen") +
         " = " +
-        curr_sum,
-      "output-2"
+        curr_sum
     );
     print(
-      `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarr.join(", ")}`,
-      "output-2"
+      `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarr.join(", ")}`
     );
   }
-  print(`<br>Max sum subarray: ${max_subarr.join(", ")}`, "output-2");
-  print(`Max sum: ${max_sum}`, "output-2");
+  print(`\nMax sum subarray: ${max_subarr.join(", ")}`);
+  print(`Max sum: ${max_sum}`);
   return max_sum;
 };
 
