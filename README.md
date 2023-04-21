@@ -8,6 +8,13 @@
 
 ```bash
 npm install jest jest-environment-jsdom
+npm i browserify -g
+```
+
+## Using Browsify
+
+```bash
+browserify js/max-sum.js js/sort.js js/third-max.js -o js/bundle.js
 ```
 
 ## Tests

@@ -1,22 +1,4 @@
-function print(msg, id) {
-  if (document.getElementById(id)) {
-    document.getElementById(id).innerHTML += msg + "<br>";
-  }
-}
-
-function prettify(arr, start, end, color) {
-  var output = "";
-  for (let i = 0; i < start; i++) {
-    output += arr[i] + ", ";
-  }
-  output += `<span style='color: ${color};'> ${arr
-    .slice(start, end)
-    .join(", ")}</span>`;
-  for (let i = end; i < arr.length; i++) {
-    output += ", " + arr[i];
-  }
-  return output;
-}
+const { print, prettify } = require("./util.js");
 
 var i = 0;
 
@@ -59,47 +41,22 @@ function reverse_merge(a, b) {
 }
 
 // O(nlogn)
-function naive_third_max(arr, n) {
-  if (n === "") {
-    n = null;
-  }
-  if (n != arr.length) {
-    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, "output-1");
-    throw new RangeError(message);
-  }
-
+global.naive_third_max = function (arr, n) {
   if (n < 3) {
     print("Third Max Element: N.A.", "output-1");
     return null;
   }
 
   i = 0;
-  const START_TIME = performance.now()
   const sorted_arr = merge_sort(arr, n);
   const t_max = sorted_arr[2];
 
   print(`<br>Third max element: ${t_max}`, "output-1");
-  print(
-    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
-    "output-1"
-  );
   return t_max;
-}
+};
 
 // O(n)
-function optimal_third_max(arr, n) {
-  if (n === "") {
-    n = null;
-  }
-  if (n != arr.length) {
-    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, "output-2");
-    throw new RangeError(message);
-  }
-
-  const START_TIME = performance.now();
-
+global.optimal_third_max = function (arr, n) {
   if (n < 3) {
     print("Third Max Element: N.A.", "output-2");
     return null;
@@ -123,12 +80,8 @@ function optimal_third_max(arr, n) {
     );
   }
   print(`<br>Third max element: ${t_max}`, "output-2");
-  print(
-    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
-    "output-2"
-  );
   return t_max;
-}
+};
 
 module.exports = {
   naive_third_max,

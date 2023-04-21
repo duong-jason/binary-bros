@@ -1,41 +1,11 @@
+const { print, prettify } = require("./util.js");
+
 Array.prototype.sum = function () {
   return this.reduce((a, b) => a + b, 0);
 };
 
-function print(msg, id) {
-  if (document.getElementById(id)) {
-    document.getElementById(id).innerHTML += msg + "<br>";
-  }
-}
-
-function prettify(arr, start, end, color) {
-  var output = "";
-  for (let i = 0; i < start; i++) {
-    output += arr[i] + ", ";
-  }
-  output += `<span style='color: ${color};'> ${arr
-    .slice(start, end)
-    .join(", ")}</span>`;
-  for (let i = end; i < arr.length; i++) {
-    output += ", " + arr[i];
-  }
-  return output;
-}
-
 // O(n^2)
-function naive_max_sum(arr, n) {
-  // If no input or incorrect elements (regardless of size) -> Pop-up error
-  // If no input for size and correct input elements -> size=N.A.
-  if (n === "") {
-    n = null;
-  }
-  if (n != arr.length) {
-    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, "output-1");
-    throw new RangeError(message);
-  }
-
-  const START_TIME = performance.now();
+global.naive_max_sum = function (arr, n) {
   let [max_sum, max_subarr] = [arr[0], [arr[0]]];
 
   const combinations = function* (arr) {
@@ -65,18 +35,14 @@ function naive_max_sum(arr, n) {
   }
   print(`Max sum subarray: ${max_subarr.join(", ")}`, "output-1");
   print(`Max sum: ${max_sum}`, "output-1");
-  print(
-    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
-    "output-1"
-  );
   return max_sum;
-}
+};
 
 // O(n) -- \ref{https://en.wikipedia.org/wiki/Maximum_subarray_problem}
 // for any n-tuple, (a, ..., b, c) \in arr s.t. 1 < |a, ..., b| < n, c > \sum_{i=a}^{c} i \iff \sum_{i=a}^{b} i < 0
 // negative subarrays will always reduce the current maximum sum
 // NOTE: the algorithm will choose the full array, [1, 2, -3, 4], instead of [4]
-function optimal_max_sum(arr, n) {
+global.optimal_max_sum = function (arr, n) {
   if (n === "") {
     n = null;
   }
@@ -86,7 +52,6 @@ function optimal_max_sum(arr, n) {
     throw new RangeError(message);
   }
 
-  const START_TIME = performance.now();
   let [max_sum, max_subarr] = [arr[0], [arr[0]]];
   let curr_sum = 0;
 
@@ -111,12 +76,8 @@ function optimal_max_sum(arr, n) {
   }
   print(`<br>Max sum subarray: ${max_subarr.join(", ")}`, "output-2");
   print(`Max sum: ${max_sum}`, "output-2");
-  print(
-    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
-    "output-2"
-  );
   return max_sum;
-}
+};
 
 module.exports = {
   naive_max_sum,

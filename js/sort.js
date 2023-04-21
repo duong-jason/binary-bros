@@ -1,35 +1,6 @@
-function print(msg, id) {
-  if (document.getElementById(id)) {
-    document.getElementById(id).innerHTML += msg + "<br>";
-  }
-}
+const { print, prettify } = require("./util.js");
 
-function prettify(arr, start, end, color) {
-  var output = "";
-  for (let i = 0; i < start; i++) {
-    output += arr[i] + ", ";
-  }
-  output += `<span style='color: ${color};'> ${arr
-    .slice(start, end)
-    .join(", ")}</span>`;
-  for (let i = end; i < arr.length; i++) {
-    output += ", " + arr[i];
-  }
-  return output;
-}
-
-function bubble_sort(arr, n) {
-  if (n === "") {
-    n = null;
-  }
-  if (n != arr.length) {
-    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, "output-1");
-    throw new RangeError(message);
-  }
-
-  const START_TIME = performance.now();
-
+global.bubble_sort = function (arr, n) {
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
       print(
@@ -49,40 +20,24 @@ function bubble_sort(arr, n) {
     print(`${i + 1}) ${arr.join(", ")}<br>`, "output-1");
   }
   print(`Sorted Array: ${arr.join(", ")}`, "output-1");
-  print(
-    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
-    "output-1"
-  );
   return arr;
-}
+};
 
 var i = 0;
 
-function merge_sort_wrapper(arr, n = null) {
+global.merge_sort_wrapper = function (arr, n = null) {
   i = 0;
-  const START_TIME = performance.now();
   let result = merge_sort(arr, n);
   print(`<br>Sorted Array: ${result.join(", ")}`, "output-2");
-  print(
-    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
-    "output-2"
-  );
   return result;
-}
+};
 
 function merge_sort(arr, n = null) {
-  if (n === "") {
-    n = null;
-  } else if (n === null) {
+  // either one element from split or input array with less than 1 element
+  if (n === null) {
     n = arr.length;
   }
-  if (n != arr.length) {
-    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, "output-2");
-    throw new RangeError(message);
-  }
 
-  // either one element from split or input array with less than 1 element
   if (n <= 1) {
     return arr;
   }
