@@ -7,19 +7,18 @@
 ## Installation
 
 ```bash
-npm install jest jest-environment-jsdom
+npm install
 npm i browserify -g
 ```
 
-## Using Browserify
+## Build
 
 ```bash
-browserify js/*[^bundle].js -o js/bundle.js
+npm run build
 ```
 
 ## Tests
 
 ```bash
-npm test  # unit-tests
-npx prettier --check .  # format-check
+npm test
 ```
