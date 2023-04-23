@@ -30,7 +30,6 @@ global.merge_sort_wrapper = function (arr, n) {
 };
 
 function merge_sort(arr, n = null) {
-  // either one element from split or input array with less than 1 element
   if (n === null) {
     n = arr.length;
   }
@@ -54,19 +53,18 @@ function merge_sort(arr, n = null) {
   return merge(merge_sort(left), merge_sort(right));
 }
 
-function merge(a, b) {
-  const n = a.length,
-    m = b.length;
+function merge(left, right) {
+  const [n, m] = Array.from(arguments).map((x) => x.length);
   let c = [],
     p = 0,
     q = 0;
 
   while (p < n && q < m) {
-    c.push(a[p] < b[q] ? a[p++] : b[q++]);
+    c.push(left[p] < right[q] ? left[p++] : right[q++]);
   }
 
-  // either sorted array `a` or `b` must be empty and the other with at least one element
-  let result = [...c, ...a.slice(p, n), ...b.slice(q, m)];
+  // either sorted arrays `a` or `b` must be empty and the other with at least one element
+  let result = [...c, ...left.slice(p, n), ...right.slice(q, m)];
   print(`${(global_counter += 1)}) Merged Array: ${result.join(", ")}`);
   return result;
 }

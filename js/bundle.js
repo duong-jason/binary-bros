@@ -40,13 +40,13 @@ global.naive_max_sum = function (arr, n) {
 
 // O(n) -- \ref{https://en.wikipedia.org/wiki/Maximum_subarray_problem}
 // for any n-tuple, (a, ..., b, c) \in arr s.t. 1 < |a, ..., b| < n, c > \sum_{i=a}^{c} i \iff \sum_{i=a}^{b} i < 0
-// negative subarrays will always reduce the current maximum sum
 // NOTE: the algorithm will choose the full array, [1, 2, -3, 4], instead of [4]
 global.optimal_max_sum = function (arr, n) {
   let [max_sum, max_subarr] = [arr[0], [arr[0]]];
   let curr_sum = 0;
 
   for (let i = (j = 0); i < n; i++) {
+    // negative subarrays will always reduce the current maximum sum
     if (curr_sum < 0) {
       [curr_sum, j] = [0, i];
     }
@@ -108,7 +108,6 @@ global.merge_sort_wrapper = function (arr, n) {
 };
 
 function merge_sort(arr, n = null) {
-  // either one element from split or input array with less than 1 element
   if (n === null) {
     n = arr.length;
   }
@@ -132,19 +131,18 @@ function merge_sort(arr, n = null) {
   return merge(merge_sort(left), merge_sort(right));
 }
 
-function merge(a, b) {
-  const n = a.length,
-    m = b.length;
+function merge(left, right) {
+  const [n, m] = Array.from(arguments).map((x) => x.length);
   let c = [],
     p = 0,
     q = 0;
 
   while (p < n && q < m) {
-    c.push(a[p] < b[q] ? a[p++] : b[q++]);
+    c.push(left[p] < right[q] ? left[p++] : right[q++]);
   }
 
-  // either sorted array `a` or `b` must be empty and the other with at least one element
-  let result = [...c, ...a.slice(p, n), ...b.slice(q, m)];
+  // either sorted arrays `a` or `b` must be empty and the other with at least one element
+  let result = [...c, ...left.slice(p, n), ...right.slice(q, m)];
   print(`${(global_counter += 1)}) Merged Array: ${result.join(", ")}`);
   return result;
 }
@@ -220,17 +218,13 @@ global.print = function (message = "") {
 };
 
 global.prettify = function (arr, start, end, color) {
-  var output = "";
-  for (let i = 0; i < start; i++) {
-    output += arr[i] + ", ";
-  }
-  output += `<span style='color: ${color};'>${arr
-    .slice(start, end)
-    .join(", ")}</span>`;
-  for (let i = end; i < arr.length; i++) {
-    output += ", " + arr[i];
-  }
-  return output;
+  var output = [];
+  output.push(...arr.slice(0, start));
+  output.push(
+    `<span style='color: ${color};'>${arr.slice(start, end).join(", ")}</span>`
+  );
+  output.push(...arr.slice(end));
+  return output.join(", ");
 };
 
 function preprocess(elements) {
@@ -272,7 +266,10 @@ global.run = function (algo, arr, n, tag) {
 
     // Stop the clock once the algorithm finishes execution
     const END_TIME = performance.now();
-    print(`Execution Time: ${(END_TIME - START_TIME).toFixed(6)} ms`, tag);
+    print(
+      `\nAlgorithm execution time: ${(END_TIME - START_TIME).toFixed(6)} ms`,
+      tag
+    );
   } catch (e) {
     if (e instanceof TypeError) {
       alert("Please enter comma-spaced numerical values (e.g., 1, -23, 45.67)");

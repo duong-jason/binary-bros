@@ -38,13 +38,13 @@ global.naive_max_sum = function (arr, n) {
 
 // O(n) -- \ref{https://en.wikipedia.org/wiki/Maximum_subarray_problem}
 // for any n-tuple, (a, ..., b, c) \in arr s.t. 1 < |a, ..., b| < n, c > \sum_{i=a}^{c} i \iff \sum_{i=a}^{b} i < 0
-// negative subarrays will always reduce the current maximum sum
 // NOTE: the algorithm will choose the full array, [1, 2, -3, 4], instead of [4]
 global.optimal_max_sum = function (arr, n) {
   let [max_sum, max_subarr] = [arr[0], [arr[0]]];
   let curr_sum = 0;
 
   for (let i = (j = 0); i < n; i++) {
+    // negative subarrays will always reduce the current maximum sum
     if (curr_sum < 0) {
       [curr_sum, j] = [0, i];
     }

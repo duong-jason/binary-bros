@@ -6,17 +6,13 @@ global.print = function (message = "") {
 };
 
 global.prettify = function (arr, start, end, color) {
-  var output = "";
-  for (let i = 0; i < start; i++) {
-    output += arr[i] + ", ";
-  }
-  output += `<span style='color: ${color};'>${arr
-    .slice(start, end)
-    .join(", ")}</span>`;
-  for (let i = end; i < arr.length; i++) {
-    output += ", " + arr[i];
-  }
-  return output;
+  var output = [];
+  output.push(...arr.slice(0, start));
+  output.push(
+    `<span style='color: ${color};'>${arr.slice(start, end).join(", ")}</span>`
+  );
+  output.push(...arr.slice(end));
+  return output.join(", ");
 };
 
 function preprocess(elements) {
@@ -58,7 +54,10 @@ global.run = function (algo, arr, n, tag) {
 
     // Stop the clock once the algorithm finishes execution
     const END_TIME = performance.now();
-    print(`Execution Time: ${(END_TIME - START_TIME).toFixed(6)} ms`, tag);
+    print(
+      `\nAlgorithm execution time: ${(END_TIME - START_TIME).toFixed(6)} ms`,
+      tag
+    );
   } catch (e) {
     if (e instanceof TypeError) {
       alert("Please enter comma-spaced numerical values (e.g., 1, -23, 45.67)");
