@@ -1,31 +1,28 @@
 const { print, prettify } = require("./util.js");
 
-var global_counter = 0;
-
 global.bubble_sort = function (arr, n) {
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
       print(
-        `${i + 1}) ` +
-          prettify(
-            arr,
-            j,
-            j + 2,
-            arr[j] > arr[j + 1] ? "Tomato" : "MediumSeaGreen"
-          )
+        prettify(
+          arr,
+          j,
+          j + 2,
+          arr[j] > arr[j + 1] ? "Tomato" : "MediumSeaGreen"
+        ),
+        (counter = true)
       );
       if (arr[j] > arr[j + 1]) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
     }
-    print(`${i + 1}) ${arr.join(", ")}\n`);
+    print(`${arr.join(", ")}\n`, (counter = true));
   }
   print(`Sorted Array: ${arr.join(", ")}`);
   return arr;
 };
 
 global.merge_sort_wrapper = function (arr, n) {
-  global_counter = 0;
   print(`\nSorted Array: ${merge_sort(arr, n).join(", ")}`);
 };
 
@@ -42,12 +39,8 @@ function merge_sort(arr, n = null) {
   let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
 
   print(
-    `${(global_counter += 1)}) Split Array: ${prettify(
-      arr,
-      mid - 1,
-      mid + 1,
-      "Orange"
-    )}`
+    "Split Array: " + prettify(arr, mid - 1, mid + 1, "Orange"),
+    (counter = true)
   );
 
   return merge(merge_sort(left), merge_sort(right));
@@ -65,7 +58,7 @@ function merge(left, right) {
 
   // either sorted arrays `a` or `b` must be empty and the other with at least one element
   let result = [...c, ...left.slice(p, n), ...right.slice(q, m)];
-  print(`${(global_counter += 1)}) Merged Array: ${result.join(", ")}`);
+  print(`Merged Array: ${result.join(", ")}`, (counter = true));
   return result;
 }
 

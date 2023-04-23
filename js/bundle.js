@@ -14,10 +14,8 @@ global.naive_max_sum = function (arr, n) {
     for (let i = 0; i < n; i++) {
       for (let j = i + 1; j <= n; j++) {
         print(
-          `${i + 1}) ` +
-            prettify(arr, i, j, "Orange") +
-            " = " +
-            arr.slice(i, j).sum()
+          prettify(arr, i, j, "Orange") + " = " + arr.slice(i, j).sum(),
+          (counter = true)
         );
         yield [arr.slice(i, j).sum(), arr.slice(i, j)];
       }
@@ -54,10 +52,10 @@ global.optimal_max_sum = function (arr, n) {
       [max_sum, max_subarr] = [curr_sum, arr.slice(j, i + 1)];
     }
     print(
-      `${i + 1}) ` +
-        prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen") +
+      prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen") +
         " = " +
-        curr_sum
+        curr_sum,
+      (counter = true)
     );
     print(
       `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarr.join(", ")}`
@@ -78,32 +76,29 @@ module.exports = {
 (function (global){(function (){
 const { print, prettify } = require("./util.js");
 
-var global_counter = 0;
-
 global.bubble_sort = function (arr, n) {
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
       print(
-        `${i + 1}) ` +
-          prettify(
-            arr,
-            j,
-            j + 2,
-            arr[j] > arr[j + 1] ? "Tomato" : "MediumSeaGreen"
-          )
+        prettify(
+          arr,
+          j,
+          j + 2,
+          arr[j] > arr[j + 1] ? "Tomato" : "MediumSeaGreen"
+        ),
+        (counter = true)
       );
       if (arr[j] > arr[j + 1]) {
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
       }
     }
-    print(`${i + 1}) ${arr.join(", ")}\n`);
+    print(`${arr.join(", ")}\n`, (counter = true));
   }
   print(`Sorted Array: ${arr.join(", ")}`);
   return arr;
 };
 
 global.merge_sort_wrapper = function (arr, n) {
-  global_counter = 0;
   print(`\nSorted Array: ${merge_sort(arr, n).join(", ")}`);
 };
 
@@ -120,12 +115,8 @@ function merge_sort(arr, n = null) {
   let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
 
   print(
-    `${(global_counter += 1)}) Split Array: ${prettify(
-      arr,
-      mid - 1,
-      mid + 1,
-      "Orange"
-    )}`
+    "Split Array: " + prettify(arr, mid - 1, mid + 1, "Orange"),
+    (counter = true)
   );
 
   return merge(merge_sort(left), merge_sort(right));
@@ -143,7 +134,7 @@ function merge(left, right) {
 
   // either sorted arrays `a` or `b` must be empty and the other with at least one element
   let result = [...c, ...left.slice(p, n), ...right.slice(q, m)];
-  print(`${(global_counter += 1)}) Merged Array: ${result.join(", ")}`);
+  print(`Merged Array: ${result.join(", ")}`, (counter = true));
   return result;
 }
 
@@ -210,10 +201,21 @@ module.exports = {
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./sort.js":2,"./util.js":4}],4:[function(require,module,exports){
 (function (global){(function (){
-global.print = function (message = "") {
+global.clear_display = function (tag) {
+  if (document.getElementById(tag).innerHTML) {
+    document.getElementById(tag).innerHTML = "";
+  }
+};
+
+global.print = function (message = "", counter = false) {
   if (document.getElementById(global_tag)) {
-    document.getElementById(global_tag).innerHTML +=
-      message.replace("\n", "<br>") + "<br>";
+    message = message.replace("\n", "<br>");
+    if (counter) {
+      document.getElementById(global_tag).innerHTML +=
+        `${global_counter++}) ` + message + "<br>";
+    } else {
+      document.getElementById(global_tag).innerHTML += message + "<br>";
+    }
   }
 };
 
@@ -236,12 +238,14 @@ function preprocess(elements) {
   return elements.split(", ").map(Number);
 }
 
-var global_tag;
+var global_tag, global_counter;
 
 global.run = function (algo, arr, n, tag) {
   try {
     // Start the clock once user presses the run button
     const START_TIME = performance.now();
+
+    clear_display(tag);
 
     if (arr == ":3") {
       function range(size, min, max) {
@@ -262,13 +266,14 @@ global.run = function (algo, arr, n, tag) {
     }
 
     global_tag = tag;
+    global_counter = 1;
+
     algo(arr, n);
 
     // Stop the clock once the algorithm finishes execution
     const END_TIME = performance.now();
     print(
-      `\nAlgorithm execution time: ${(END_TIME - START_TIME).toFixed(6)} ms`,
-      tag
+      `\nAlgorithm execution time: ${(END_TIME - START_TIME).toFixed(6)} ms`
     );
   } catch (e) {
     if (e instanceof TypeError) {

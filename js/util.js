@@ -1,7 +1,18 @@
-global.print = function (message = "") {
+global.clear_display = function (tag) {
+  if (document.getElementById(tag).innerHTML) {
+    document.getElementById(tag).innerHTML = "";
+  }
+};
+
+global.print = function (message = "", counter = false) {
   if (document.getElementById(global_tag)) {
-    document.getElementById(global_tag).innerHTML +=
-      message.replace("\n", "<br>") + "<br>";
+    message = message.replace("\n", "<br>");
+    if (counter) {
+      document.getElementById(global_tag).innerHTML +=
+        `${global_counter++}) ` + message + "<br>";
+    } else {
+      document.getElementById(global_tag).innerHTML += message + "<br>";
+    }
   }
 };
 
@@ -24,12 +35,14 @@ function preprocess(elements) {
   return elements.split(", ").map(Number);
 }
 
-var global_tag;
+var global_tag, global_counter;
 
 global.run = function (algo, arr, n, tag) {
   try {
     // Start the clock once user presses the run button
     const START_TIME = performance.now();
+
+    clear_display(tag);
 
     if (arr == ":3") {
       function range(size, min, max) {
@@ -50,13 +63,14 @@ global.run = function (algo, arr, n, tag) {
     }
 
     global_tag = tag;
+    global_counter = 1;
+
     algo(arr, n);
 
     // Stop the clock once the algorithm finishes execution
     const END_TIME = performance.now();
     print(
-      `\nAlgorithm execution time: ${(END_TIME - START_TIME).toFixed(6)} ms`,
-      tag
+      `\nAlgorithm execution time: ${(END_TIME - START_TIME).toFixed(6)} ms`
     );
   } catch (e) {
     if (e instanceof TypeError) {

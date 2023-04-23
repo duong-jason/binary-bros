@@ -8,7 +8,6 @@ global.naive_third_max = function (arr, n) {
     return null;
   }
 
-  // FIXME: should always start at iteration 1 (reset iteration in every run)
   const sorted_arr = merge_sort(arr, n);
   const t_max = sorted_arr[sorted_arr.length - 3];
 

@@ -12,10 +12,8 @@ global.naive_max_sum = function (arr, n) {
     for (let i = 0; i < n; i++) {
       for (let j = i + 1; j <= n; j++) {
         print(
-          `${i + 1}) ` +
-            prettify(arr, i, j, "Orange") +
-            " = " +
-            arr.slice(i, j).sum()
+          prettify(arr, i, j, "Orange") + " = " + arr.slice(i, j).sum(),
+          (counter = true)
         );
         yield [arr.slice(i, j).sum(), arr.slice(i, j)];
       }
@@ -52,10 +50,10 @@ global.optimal_max_sum = function (arr, n) {
       [max_sum, max_subarr] = [curr_sum, arr.slice(j, i + 1)];
     }
     print(
-      `${i + 1}) ` +
-        prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen") +
+      prettify(arr, j, i + 1, curr_sum < 0 ? "Tomato" : "MediumSeaGreen") +
         " = " +
-        curr_sum
+        curr_sum,
+      (counter = true)
     );
     print(
       `Max Sum = ${max_sum} and Max Sum Subarray = ${max_subarr.join(", ")}`
