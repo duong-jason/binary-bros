@@ -3,12 +3,6 @@ const modules = [bubble_sort, merge_sort];
 
 function runner(func) {
   describe(func.name, () => {
-    test("Invalid value for array length", () => {
-      expect(() => {
-        func([1], 2);
-      }).toThrow("Expected size=2, Got size=1");
-    });
-
     test("Single element input", () => {
       expect(func([1], 1)).toEqual([1]);
     });

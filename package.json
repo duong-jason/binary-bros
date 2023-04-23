@@ -1,13 +1,14 @@
 {
   "name": "binary-bros",
   "version": "1.0.0",
-  "description": "## Installation",
-  "main": "sort.js",
+  "description": "A Web-Based Algorithm Visualizer",
+  "main": "index.html",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "jest --silent --env=jsdom"
+    "test": "jest --silent --env=jsdom",
+    "build": "npx prettier --write . && browserify js/*[^bundle].js -o js/bundle.js"
   },
   "prettier": {
     "bracketSameLine": true

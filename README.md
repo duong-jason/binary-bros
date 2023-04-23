@@ -7,12 +7,18 @@
 ## Installation
 
 ```bash
-npm install jest jest-environment-jsdom
+npm install
+npm i browserify -g
+```
+
+## Build
+
+```bash
+npm run build
 ```
 
 ## Tests
 
 ```bash
-npm test  # unit-tests
-npx prettier --check .  # format-check
+npm test
 ```

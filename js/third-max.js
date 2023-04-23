@@ -1,107 +1,25 @@
-function print(msg, id) {
-  if (document.getElementById(id)) {
-    document.getElementById(id).innerHTML += msg + "<br>";
-  }
-}
-
-function prettify(arr, start, end, color) {
-  var output = "";
-  for (let i = 0; i < start; i++) {
-    output += arr[i] + ", ";
-  }
-  output += `<span style='color: ${color};'> ${arr
-    .slice(start, end)
-    .join(", ")}</span>`;
-  for (let i = end; i < arr.length; i++) {
-    output += ", " + arr[i];
-  }
-  return output;
-}
-
-var i = 0;
-
-function merge_sort(arr, n = null) {
-  if (n === null) {
-    n = arr.length;
-  }
-
-  // either one element from split or input array with less than 1 element
-  if (n <= 1) {
-    return arr;
-  }
-
-  const mid = Math.floor(n / 2);
-  let [left, right] = [arr.slice(0, mid), arr.slice(mid)];
-
-  print(
-    `${(i += 1)}) Split Array: ${prettify(arr, mid - 1, mid + 1, "Orange")}`,
-    "output-1"
-  );
-
-  return reverse_merge(merge_sort(left), merge_sort(right));
-}
-
-function reverse_merge(a, b) {
-  const n = a.length,
-    m = b.length;
-  let c = [],
-    p = 0,
-    q = 0;
-
-  while (p < n && q < m) {
-    c.push(a[p] > b[q] ? a[p++] : b[q++]);
-  }
-
-  // either sorted array `a` or `b` must be empty and the other with at least one element
-  let result = [...c, ...a.slice(p, n), ...b.slice(q, m)];
-  print(`${(i += 1)}) Merged Array: ${result.join(", ")}`, "output-1");
-  return result;
-}
+const { print } = require("./util.js");
+const { merge_sort } = require("./sort.js");
 
 // O(nlogn)
-function naive_third_max(arr, n) {
-  if (n === "") {
-    n = null;
-  }
-  if (n != arr.length) {
-    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, "output-1");
-    throw new RangeError(message);
-  }
-
+global.naive_third_max = function (arr, n) {
   if (n < 3) {
-    print("Third Max Element: N.A.", "output-1");
+    print("Third Max Element: N.A.");
     return null;
   }
 
-  i = 0;
-  const START_TIME = performance.now()
+  // FIXME: should always start at iteration 1 (reset iteration in every run)
   const sorted_arr = merge_sort(arr, n);
-  const t_max = sorted_arr[2];
+  const t_max = sorted_arr[sorted_arr.length - 3];
 
-  print(`<br>Third max element: ${t_max}`, "output-1");
-  print(
-    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
-    "output-1"
-  );
+  print(`\nThird max element: ${t_max}`);
   return t_max;
-}
+};
 
 // O(n)
-function optimal_third_max(arr, n) {
-  if (n === "") {
-    n = null;
-  }
-  if (n != arr.length) {
-    const message = `Expected size=${n ?? "N.A."}, Got size=${arr.length}`;
-    print(message, "output-2");
-    throw new RangeError(message);
-  }
-
-  const START_TIME = performance.now();
-
+global.optimal_third_max = function (arr, n) {
   if (n < 3) {
-    print("Third Max Element: N.A.", "output-2");
+    print("Third Max Element: N.A.");
     return null;
   }
 
@@ -116,19 +34,16 @@ function optimal_third_max(arr, n) {
       t_max = arr[i];
     }
     print(
-      `${i + 1}) First Max: ${f_max == Number.NEGATIVE_INFINITY ? "?" : f_max},
-      Second Max: ${s_max == Number.NEGATIVE_INFINITY ? "?" : s_max},
-      Third Max: ${t_max == Number.NEGATIVE_INFINITY ? "?" : t_max}`,
-      "output-2"
+      `${i + 1}) First Max: ${
+        f_max == Number.NEGATIVE_INFINITY ? "?" : f_max
+      }, Second Max: ${
+        s_max == Number.NEGATIVE_INFINITY ? "?" : s_max
+      }, Third Max: ${t_max == Number.NEGATIVE_INFINITY ? "?" : t_max}`
     );
   }
-  print(`<br>Third max element: ${t_max}`, "output-2");
-  print(
-    `Execution Time: ${(performance.now() - START_TIME).toFixed(6)} ms`,
-    "output-2"
-  );
+  print(`\nThird max element: ${t_max}`);
   return t_max;
-}
+};
 
 module.exports = {
   naive_third_max,
