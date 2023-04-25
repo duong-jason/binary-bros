@@ -8,7 +8,6 @@
   <body>
     <h1 class="sortalgo">Sorting Algorithms</h1>
     <div class="algos-container">
-
       <div class="left-column">
         <div class="bubble-container">
           <div class="title-container">
@@ -16,17 +15,17 @@
           </div>
           <div class="inputs">
             <div>
-              <label for="size-1">Size:</label><br>
+              <label for="size-1">Size:</label><br />
               <input
-              type="number"
-              min="0"
-              oninput="validity.valid||(value='');"
-              name="size-1"
-              id="size-1" />
+                type="number"
+                min="0"
+                oninput="validity.valid||(value='');"
+                name="size-1"
+                id="size-1" />
             </div>
             <div>
-              <label for="elements-1">Elements:</label><br>
-              <input name="elements" id="elements-1"><br>
+              <label for="elements-1">Elements:</label><br />
+              <input name="elements" id="elements-1" /><br />
             </div>
           </div>
           <button
@@ -35,11 +34,9 @@
             Run
           </button>
           <button class="btn" onclick="clear_display('output-1')">Clear</button>
-          <div class="output-1" id="output-1"></div>   
-        </div> 
-        <div class="complexity">
-          Complexity: O(n^2)
-        </div> 
+          <div class="output-1" id="output-1"></div>
+        </div>
+        <div class="complexity">Complexity: O(n^2)</div>
       </div>
 
       <div class="right-column">
@@ -49,17 +46,17 @@
           </div>
           <div class="inputs">
             <div>
-              <label for="size-2">Size:</label><br>
+              <label for="size-2">Size:</label><br />
               <input
-              type="number"
-              min="0"
-              oninput="validity.valid||(value='');"
-              name="size-2"
-              id="size-2" />
+                type="number"
+                min="0"
+                oninput="validity.valid||(value='');"
+                name="size-2"
+                id="size-2" />
             </div>
             <div>
-              <label for="elements-2">Elements:</label><br>
-              <input name="elements" id="elements-2"><br>
+              <label for="elements-2">Elements:</label><br />
+              <input name="elements" id="elements-2" /><br />
             </div>
           </div>
           <button
@@ -68,14 +65,11 @@
             Run
           </button>
           <button class="btn" onclick="clear_display('output-2')">Clear</button>
-        <div class="output-2" id="output-2"></div>
           <div class="output-2" id="output-2"></div>
-        </div> 
-        <div class="complexity">
-          Complexity: O(n*logn)
-        </div> 
+          <div class="output-2" id="output-2"></div>
+        </div>
+        <div class="complexity">Complexity: O(n*logn)</div>
       </div>
-       
     </div>
     <div class="back-container">
       <button class="back-btn" onclick="window.location.href='./index.html';">
