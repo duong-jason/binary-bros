@@ -11,7 +11,8 @@
     "build": "npx prettier --write . && browserify js/*[^bundle].js -o js/bundle.js"
   },
   "prettier": {
-    "bracketSameLine": true
+    "bracketSameLine": true,
+    "printWidth": 88
   },
   "keywords": [],
   "author": "",
