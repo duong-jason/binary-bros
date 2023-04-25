@@ -33,11 +33,10 @@ global.optimal_third_max = function (arr, n) {
       t_max = arr[i];
     }
     print(
-      `${i + 1}) First Max: ${
-        f_max == Number.NEGATIVE_INFINITY ? "?" : f_max
-      }, Second Max: ${
-        s_max == Number.NEGATIVE_INFINITY ? "?" : s_max
-      }, Third Max: ${t_max == Number.NEGATIVE_INFINITY ? "?" : t_max}`
+      `First Max: ${f_max == Number.NEGATIVE_INFINITY ? "?" : f_max}, ` +
+        `Second Max: ${s_max == Number.NEGATIVE_INFINITY ? "?" : s_max}, ` +
+        `Third Max: ${t_max == Number.NEGATIVE_INFINITY ? "?" : t_max}`,
+      (counter = true)
     );
   }
   print(`\nThird max element: ${t_max}`);

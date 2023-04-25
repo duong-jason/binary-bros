@@ -1,3 +1,9 @@
+var global_tag, global_counter;
+
+Array.prototype.toString = function () {
+  return this.join(", ");
+};
+
 global.clear_display = function (tag) {
   if (document.getElementById(tag).innerHTML) {
     document.getElementById(tag).innerHTML = "";
@@ -5,25 +11,28 @@ global.clear_display = function (tag) {
 };
 
 global.print = function (message = "", counter = false) {
-  if (document.getElementById(global_tag)) {
+  const algorithm_box = document.getElementById(global_tag);
+
+  if (algorithm_box) {
     message = message.replace("\n", "<br>");
+    // Display iteration number if counter is set to true
     if (counter) {
-      document.getElementById(global_tag).innerHTML +=
-        `${global_counter++}) ` + message + "<br>";
-    } else {
-      document.getElementById(global_tag).innerHTML += message + "<br>";
+      algorithm_box.innerHTML += `${global_counter++}) `;
     }
+    algorithm_box.innerHTML += message + "<br>";
   }
 };
 
-global.prettify = function (arr, start, end, color) {
-  var output = [];
-  output.push(...arr.slice(0, start));
-  output.push(
-    `<span style='color: ${color};'>${arr.slice(start, end).join(", ")}</span>`
-  );
-  output.push(...arr.slice(end));
-  return output.join(", ");
+global.prettify = function (arr, start, end, color = "Orange") {
+  if (typeof color == "boolean") {
+    color = color ? "Tomato" : "MediumSeaGreen";
+  }
+
+  return [
+    ...arr.slice(0, start),
+    `<span style='color: ${color};'>${arr.slice(start, end)}</span>`,
+    ...arr.slice(end),
+  ].toString();
 };
 
 function preprocess(elements) {
@@ -34,8 +43,6 @@ function preprocess(elements) {
   }
   return elements.split(", ").map(Number);
 }
-
-var global_tag, global_counter;
 
 global.run = function (algo, arr, n, tag) {
   try {
@@ -52,7 +59,7 @@ global.run = function (algo, arr, n, tag) {
         }
         return r;
       }
-      arr = range(10, -8, 7);
+      arr = range(10, -15, 15);
       n = arr.length;
     } else {
       arr = preprocess(arr);
@@ -70,7 +77,9 @@ global.run = function (algo, arr, n, tag) {
     // Stop the clock once the algorithm finishes execution
     const END_TIME = performance.now();
     print(
-      `\nAlgorithm execution time: ${(END_TIME - START_TIME).toFixed(6)} ms`
+      `\nAlgorithm execution time: ${Math.round(
+        (END_TIME - START_TIME) * 1000
+      )} ${String.fromCharCode(0xb5)}s`
     );
   } catch (e) {
     if (e instanceof TypeError) {
