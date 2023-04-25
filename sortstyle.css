@@ -33,19 +33,18 @@ body {
 
 .bubble-container {
   width: 35vw;
+  min-height: 30vh;
   background-color: rgba(73, 70, 146, 0.47);
   border-radius: 10px;
   padding: 1.2vw;
+  justify-content: space-between;
 }
 
 .title-container {
   width: 100%;
   display: flex;
   justify-content: center;
-}
-
-.bubble-container h2 {
-  padding-bottom: 2vh;
+  padding: 1vh;
 }
 
 .inputs {
@@ -68,6 +67,7 @@ div[id^="output_"] {
 
 .merge-container {
   width: 35vw;
+  min-height: 30vh;
   background-color: rgba(73, 70, 146, 0.47);
   border-radius: 10px;
   padding: 1.2vw;
@@ -75,6 +75,8 @@ div[id^="output_"] {
 
 .complexity {
   padding: 2vh;
+  position: relative;
+  bottom: 0;
 }
 
 .btn {
@@ -115,4 +117,18 @@ div[id^="output_"] {
   justify-content: space-between;
   background: rgba(64, 62, 122, 0.23);
   width: 100vw;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  align-items: center;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  align-items: center;
 }

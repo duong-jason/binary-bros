@@ -6,76 +6,84 @@
     <script src="js/bundle.js"></script>
   </head>
   <body>
-    <h1 class="sortalgo">Find Max Sum</h1>
-    <div class="algos-container">
-      <div class="bubble-container">
-        <div class="title-container">
-          <h2>Naive Max Sum</h2>
-        </div>
-        <div class="inputs">
-          <div>
-            <label for="size-1">Size:</label><br />
-            <input
-              type="number"
-              min="0"
-              oninput="validity.valid||(value='');"
-              name="size-1"
-              id="size-1" />
+    <h1 class="sortalgo">Find Max Sum</h2>
+      <div class="algos-container">
+        <div class="left-column">
+          <div class="bubble-container">
+            <div class="title-container">
+              <h2>Naive Max Sum</h2>
+            </div>
+            <div class="inputs">
+              <div>
+                <label for="size-1">Size:</label><br>
+                <input
+                  type="number"
+                  min="0"
+                  oninput="validity.valid||(value='');"
+                  name="size-1"
+                  id="size-1" />
+              </div>
+              <div>
+                <label for="elements">Elements:</label><br>
+                <input name="elements" id="elements-1"><br>
+              </div>
+            </div>
+            <button
+              class="btn"
+              onclick="run(naive_max_sum, document.getElementById('elements-1').value, document.getElementById('size-1').value, 'output-1')">
+              Run
+            </button>
+            <button class="btn" onclick="clear_display('output-1')">Clear</button>
+            <div class="output-1" id="output-1"></div>
+          </div>  
+          <div class="complexity">
+            Complexity: O(n^2)
           </div>
-          <div>
-            <label for="elements">Elements:</label><br />
-            <input name="elements" id="elements-1" /><br />
+        </div>
+        
+        <div class="right-column">
+          <div class="merge-container">
+            <div class="title-container">
+              <h2>Optimal Max Sum</h2>
+            </div>
+            <div class="inputs">
+              <div>
+                <label for="size-2">Size:</label><br>
+                <input
+                  type="number"
+                  min="0"
+                  oninput="validity.valid||(value='');"
+                  name="size-2"
+                  id="size-2" />
+              </div>
+              <div>
+                <label for="elements">Elements:</label><br>
+                <input name="elements" id="elements-2"><br>
+              </div>
+            </div>
+            <button
+              class="btn"
+              onclick="run(optimal_max_sum, document.getElementById('elements-2').value, document.getElementById('size-2').value, 'output-2')">
+              Run
+            </button>
+            <button class="btn" onclick="clear_display('output-2')">Clear</button>
+            <div class="output-2" id="output-2"></div>
+          </div>  
+          <div class="complexity">
+            Complexity: O(n)
           </div>
         </div>
-        <button
-          class="btn"
-          onclick="run(naive_max_sum, document.getElementById('elements-1').value, document.getElementById('size-1').value, 'output-1')">
-          Run
-        </button>
-        <button class="btn" onclick="clear_display('output-1')">Clear</button>
-        <div class="output-1" id="output-1"></div>
-        <div class="complexity">Complexity: O(n^2)</div>
+        
       </div>
-      <div class="merge-container">
-        <div class="title-container">
-          <h2>Optimal Max Sum</h2>
-        </div>
-        <div class="inputs">
-          <div>
-            <label for="size-2">Size:</label><br />
-            <input
-              type="number"
-              min="0"
-              oninput="validity.valid||(value='');"
-              name="size-2"
-              id="size-2" />
-          </div>
-          <div>
-            <label for="elements">Elements:</label><br />
-            <input name="elements" id="elements-2" /><br />
-          </div>
-        </div>
-        <button
-          class="btn"
-          onclick="run(optimal_max_sum, document.getElementById('elements-2').value, document.getElementById('size-2').value, 'output-2')">
-          Run
-        </button>
-        <button class="btn" onclick="clear_display('output-2')">Clear</button>
-        <div class="output-2" id="output-2"></div>
-        <div class="complexity">Complexity: O(n)</div>
+      <div class="back-container">
+        <button class="back-btn" onclick="window.location.href='./index.html';">back</button>
       </div>
-    </div>
-    <div class="back-container">
-      <button class="back-btn" onclick="window.location.href='./index.html';">
-        back
-      </button>
-    </div>
-    <div class="credits">
-      <p>
-        By: Maria Fernandez | Brian Fedelin | Jason Duong | Dylan Gunter | Josue Han Yan
-        Tai Liu
-      </p>
-      <p>CPSC 362 Spring 2023</p>
-    </div>
+      <div class="credits">
+        <p>
+          By: Maria Fernandez | Brian Fedelin | Jason Duong | Dylan Gunter | Josue
+          Han Yan Tai Liu
+        </p>
+        <p>CPSC 362 Spring 2023</p>
+      </div>
   </body>
 </html>

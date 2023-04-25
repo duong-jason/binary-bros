@@ -8,62 +8,74 @@
   <body>
     <h1 class="sortalgo">Sorting Algorithms</h1>
     <div class="algos-container">
-      <div class="bubble-container">
-        <div class="title-container">
-          <h2>Bubble Sort</h2>
-        </div>
-        <div class="inputs">
-          <div>
-            <label for="size-1">Size:</label><br />
-            <input
+
+      <div class="left-column">
+        <div class="bubble-container">
+          <div class="title-container">
+            <h2>Bubble Sort</h2>
+          </div>
+          <div class="inputs">
+            <div>
+              <label for="size-1">Size:</label><br>
+              <input
               type="number"
               min="0"
               oninput="validity.valid||(value='');"
               name="size-1"
               id="size-1" />
+            </div>
+            <div>
+              <label for="elements-1">Elements:</label><br>
+              <input name="elements" id="elements-1"><br>
+            </div>
           </div>
-          <div>
-            <label for="elements-1">Elements:</label><br />
-            <input name="elements" id="elements-1" /><br />
-          </div>
-        </div>
-        <button
-          class="btn"
-          onclick="run(bubble_sort, document.getElementById('elements-1').value, document.getElementById('size-1').value, 'output-1')">
-          Run
-        </button>
-        <button class="btn" onclick="clear_display('output-1')">Clear</button>
-        <div class="output-1" id="output-1"></div>
-        <div class="complexity">Complexity: O(n^2)</div>
+          <button
+            class="btn"
+            onclick="run(bubble_sort, document.getElementById('elements-1').value, document.getElementById('size-1').value, 'output-1')">
+            Run
+          </button>
+          <button class="btn" onclick="clear_display('output-1')">Clear</button>
+          <div class="output-1" id="output-1"></div>   
+        </div> 
+        <div class="complexity">
+          Complexity: O(n^2)
+        </div> 
       </div>
-      <div class="merge-container">
-        <div class="title-container">
-          <h2>Merge Sort</h2>
-        </div>
-        <div class="inputs">
-          <div>
-            <label for="size-2">Size:</label><br />
-            <input
+
+      <div class="right-column">
+        <div class="merge-container">
+          <div class="title-container">
+            <h2>Merge Sort</h2>
+          </div>
+          <div class="inputs">
+            <div>
+              <label for="size-2">Size:</label><br>
+              <input
               type="number"
               min="0"
               oninput="validity.valid||(value='');"
               name="size-2"
               id="size-2" />
+            </div>
+            <div>
+              <label for="elements-2">Elements:</label><br>
+              <input name="elements" id="elements-2"><br>
+            </div>
           </div>
-          <div>
-            <label for="elements-2">Elements:</label><br />
-            <input name="elements" id="elements-2" /><br />
-          </div>
-        </div>
-        <button
-          class="btn"
-          onclick="run(merge_sort_wrapper, document.getElementById('elements-2').value, document.getElementById('size-2').value, 'output-2')">
-          Run
-        </button>
-        <button class="btn" onclick="clear_display('output-2')">Clear</button>
+          <button
+            class="btn"
+            onclick="run(merge_sort_wrapper, document.getElementById('elements-2').value, document.getElementById('size-2').value, 'output-2')">
+            Run
+          </button>
+          <button class="btn" onclick="clear_display('output-2')">Clear</button>
         <div class="output-2" id="output-2"></div>
-        <div class="complexity">Complexity: O(n*logn)</div>
+          <div class="output-2" id="output-2"></div>
+        </div> 
+        <div class="complexity">
+          Complexity: O(n*logn)
+        </div> 
       </div>
+       
     </div>
     <div class="back-container">
       <button class="back-btn" onclick="window.location.href='./index.html';">
