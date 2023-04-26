@@ -51,6 +51,7 @@ global.run = function (algo, arr, n, tag) {
 
     clear_display(tag);
 
+    // FIXME: REMOVE THIS BEFORE END OF SPRINT 4
     if (arr == ":3") {
       function range(size, min, max) {
         r = [];
@@ -75,12 +76,8 @@ global.run = function (algo, arr, n, tag) {
     algo(arr, n);
 
     // Stop the clock once the algorithm finishes execution
-    const END_TIME = performance.now();
-    print(
-      `\nAlgorithm execution time: ${Math.round(
-        (END_TIME - START_TIME) * 1000
-      )} ${String.fromCharCode(0xb5)}s`
-    );
+    const TOTAL_TIME = Math.round((performance.now() - START_TIME) * 1000);
+    print(`\nAlgorithm execution time: ${TOTAL_TIME} ${String.fromCharCode(0xb5)}s`);
   } catch (e) {
     if (e instanceof TypeError) {
       alert("Please enter comma-spaced numerical values (e.g., 1, -23, 45.67)");
