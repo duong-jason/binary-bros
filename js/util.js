@@ -1,21 +1,19 @@
-var global_tag, global_counter;
+var algorithm_box, global_counter;
+
+class HaltException extends Error {}
 
 Array.prototype.toString = function () {
   return this.join(", ");
 };
 
 global.clear_display = function (tag) {
-  if (document.getElementById(tag).innerHTML) {
-    document.getElementById(tag).innerHTML = "";
-  }
+  document.getElementById(tag).innerHTML = "";
 };
 
 global.print = function (message = "", counter = false) {
-  const algorithm_box = document.getElementById(global_tag);
-
+  // Stops Jest from complaining
   if (algorithm_box) {
-    message = message.replace("\n", "<br>");
-    // Display iteration number if counter is set to true
+    message = message.replaceAll("\n", "<br>");
     if (counter) {
       algorithm_box.innerHTML += `${global_counter++}) `;
     }
@@ -36,10 +34,19 @@ global.prettify = function (arr, start, end, color = "Orange") {
 };
 
 function preprocess(elements) {
-  // Language accepts any comma-spaced sequence of signed decimal numbers
+  /* Language accepts any comma-spaced sequence of signed decimal numbers
+
+  sign           ::=  '-'
+  digit          ::=  '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+  digits         ::=  digit [digit]...
+  decimal-part   ::=  [sign] digits ['.' digits]
+  numeric-string ::=  decimal-part [', ' decimal-part]...
+  */
   const pattern = /^-?\d+(\.\d+)?(,\s-?\d+(\.\d+)?)*$/;
   if (!pattern.test(elements)) {
-    throw new TypeError();
+    throw new HaltException(
+      "Please enter comma-spaced numerical values (e.g., 1, -23, 45.67)"
+    );
   }
   return elements.split(", ").map(Number);
 }
@@ -50,27 +57,15 @@ global.run = function (algo, arr, n, tag) {
     const START_TIME = performance.now();
 
     clear_display(tag);
-
-    // FIXME: REMOVE THIS BEFORE END OF SPRINT 4
-    if (arr == ":3") {
-      function range(size, min, max) {
-        r = [];
-        for (let i = 0; i < size; i++) {
-          r.push(Math.floor(Math.random() * (max - min + 1)) + min);
-        }
-        return r;
-      }
-      arr = range(10, -15, 15);
-      n = arr.length;
-    } else {
-      arr = preprocess(arr);
-    }
+    arr = preprocess(arr);
 
     if (n != arr.length) {
-      throw new RangeError();
+      throw new HaltException(
+        `Expected Size=${n !== "" ? n : "N.A."}, Got Size=${arr.length}`
+      );
     }
 
-    global_tag = tag;
+    algorithm_box = document.getElementById(tag);
     global_counter = 1;
 
     algo(arr, n);
@@ -78,11 +73,11 @@ global.run = function (algo, arr, n, tag) {
     // Stop the clock once the algorithm finishes execution
     const TOTAL_TIME = Math.round((performance.now() - START_TIME) * 1000);
     print(`\nAlgorithm execution time: ${TOTAL_TIME} ${String.fromCharCode(0xb5)}s`);
-  } catch (e) {
-    if (e instanceof TypeError) {
-      alert("Please enter comma-spaced numerical values (e.g., 1, -23, 45.67)");
-    } else if (e instanceof RangeError) {
-      alert(`Expected Size=${n !== "" ? n : "N.A."}, Got Size=${arr.length}`);
+  } catch (err) {
+    if (err instanceof HaltException) {
+      alert(err);
+    } else {
+      throw err;
     }
   }
 };

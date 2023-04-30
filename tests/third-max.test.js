@@ -4,8 +4,8 @@ const modules = [naive_third_max, optimal_third_max];
 function runner(func) {
   describe(func.name, () => {
     test("Less than three elements input", () => {
-      expect(func([1], 1)).toEqual(null);
-      expect(func([1, 2], 2)).toEqual(null);
+      expect(func([1], 1)).toBeNull();
+      expect(func([1, 2], 2)).toBeNull();
     });
 
     test("Unsorted array input", () => {
